@@ -1,0 +1,41 @@
+cultureInfo en-GB
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "session.sessionname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Session",
+			          "ConceptualProperty": "SessionName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "session.sessionid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Session",
+			          "ConceptualProperty": "SessionId"
+			        }
+			      },
+			      "State": "Generated"
+			    }
+			  }
+			}
+		contentType: json
+

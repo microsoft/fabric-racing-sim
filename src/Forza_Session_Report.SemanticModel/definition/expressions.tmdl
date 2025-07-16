@@ -1,0 +1,14 @@
+expression EventhouseQueryUri = "https://trd-ra9k09pbbjh44s9hq7.z9.kusto.fabric.microsoft.com" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: dbd4f312-79ae-4b91-9b39-429af5b3c265
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression KQLDB = "RacingSim-EH" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: a4c5f1f6-2353-4da4-8fdb-e74249385cf6
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,137 @@
+table 'Session Lap'
+	lineageTag: 55623413-6230-47f8-a08d-b13263849fd8
+
+	measure 'Selected Session' = CONCATENATE(SELECTEDVALUE('Session'[SessionName], "ALL SESSIONS"), " SUMMARY")
+		lineageTag: 167a00af-fce7-4c91-9e8d-8d1da9ac6e21
+
+	measure 'Best Rank' = IF( ISBLANK(MIN('Session Lap'[Rank])), "No Rank", MIN('Session Lap'[Rank]))
+		formatString: 0
+		lineageTag: 98281e1b-0279-4f70-8209-7776b4525872
+
+	measure 'Best Lap Time' =
+			CALCULATE(
+			    MIN ( 'Session Lap'[Lap Time] ),
+			    'Session Lap'[Rank] = MIN('Session Lap'[Rank])
+			)
+		lineageTag: a7e9ae0a-44fb-4efe-ac05-855da0e94ec3
+
+	measure 'Best Lap Number' =
+			CALCULATE(
+			    MIN ( 'Session Lap'[Lap Number] ),
+			    'Session Lap'[Rank] = MIN('Session Lap'[Rank])
+			)
+		lineageTag: d6c2a2aa-34da-4a5d-b98b-e5394b05d886
+
+	column 'Session Id'
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(max)
+		lineageTag: 780e6731-2133-4f34-9adb-fc423cf60847
+		summarizeBy: none
+		sourceColumn: Session Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Time'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 132e991f-d6fa-441c-87b7-257ccc72ae08
+		summarizeBy: none
+		sourceColumn: Start Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lap Number'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 9ff01b1b-544d-42a5-8ea8-29a7f6a8c707
+		summarizeBy: none
+		sourceColumn: Lap Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End Time'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 008dccf9-cf4d-4246-80d6-e7bc80ff12e4
+		summarizeBy: none
+		sourceColumn: End Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lap Time'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 5f934414-cc00-472b-b032-9f6edb5e12a6
+		summarizeBy: none
+		sourceColumn: Lap Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapDistanceTraveled
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 52f0b886-02d2-4ef3-a747-2c7f0491db85
+		summarizeBy: sum
+		sourceColumn: LapDistanceTraveled
+
+		annotation SummarizationSetBy = Automatic
+
+	column SessionName
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 05db8bd8-935d-4bbd-ac52-94823bfd061c
+		summarizeBy: none
+		sourceColumn: SessionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessionLapKey
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 309c7c62-5627-48e0-b811-3d7282e2d1ea
+		summarizeBy: none
+		sourceColumn: sessionLapKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvalidLap
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 41c040b2-0cb0-40d7-a95d-11f7e181f521
+		summarizeBy: none
+		sourceColumn: InvalidLap
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rank
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 601d832b-5699-4979-b55c-e98108b3a886
+		summarizeBy: sum
+		sourceColumn: Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Session Lap' = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, "GetSessionLapData", [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"SessionId", "Session Id"}, {"LapId", "Lap Number"}, {"StartTime", "Start Time"}, {"EndTime", "End Time"}, {"LapTime", "Lap Time"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Start Time", type datetime}, {"End Time", type datetime}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Lap Time", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

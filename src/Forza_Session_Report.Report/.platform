@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Forza_Session_Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "65c4c58f-2ca3-9fc6-4e21-2ad942f4aa45"
+  }
+}

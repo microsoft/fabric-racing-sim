@@ -1,0 +1,130 @@
+table GetSessionLapData_AllDays
+	lineageTag: ab5ee129-c413-4e57-b9d9-0c0c11551e06
+
+	column SessionId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: c7224be2-72ee-468f-8e32-10e29e86670a
+		summarizeBy: none
+		sourceColumn: SessionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column SessionName
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 4fbe005f-377d-4c97-b964-874e32c2a318
+		summarizeBy: none
+		sourceColumn: SessionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessionLapKey
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 9b5758e0-d6df-4331-bdb0-3e9241642eae
+		summarizeBy: none
+		sourceColumn: sessionLapKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: e8c4165a-a8f9-4a1d-9e52-ad4d1bfdb21c
+		summarizeBy: none
+		sourceColumn: CarId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 0392f204-c209-4659-ada3-6b0f3ec00e40
+		summarizeBy: none
+		sourceColumn: LapId
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: 3660e6f2-2b4d-4d61-a9d3-3c51b1cdcb8d
+		summarizeBy: none
+		sourceColumn: StartTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: 56b7bb24-d6a3-4d40-9409-e1d5976a60fe
+		summarizeBy: none
+		sourceColumn: EndTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapTime
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 20c1ac01-5fa8-41b7-bcb8-45012990cdb4
+		summarizeBy: none
+		sourceColumn: LapTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvalidLap
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 530e9244-d096-443a-a570-dbd5470e11bb
+		summarizeBy: none
+		sourceColumn: InvalidLap
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapDistanceTraveled
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 3c3bd12a-2a88-4035-aff1-bc06a56f8aff
+		summarizeBy: sum
+		sourceColumn: LapDistanceTraveled
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rank
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: c9de59d7-b904-41fd-9101-c3b6f634e703
+		summarizeBy: sum
+		sourceColumn: Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column OverallRank
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 915a9436-ca91-4e62-b921-6e6cd04af6eb
+		summarizeBy: sum
+		sourceColumn: OverallRank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GetSessionLapData_AllDays = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    GetSessionLapData_AllDays = Source{[Name="GetSessionLapData_AllDays"]}[Data]
+				in
+				    GetSessionLapData_AllDays
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -22,7 +22,7 @@
       },
       "inputNodes": [
         {
-          "name": "RacingSim-ES-stream"
+          "name": "RacingSimES-stream"
         }
       ]
     }
@@ -30,7 +30,7 @@
   "streams": [
     {
       "id": "57920350-c049-4cd9-b6b4-53e089e030f4",
-      "name": "RacingSim-ES-stream",
+      "name": "RacingSimES-stream",
       "type": "DefaultStream",
       "properties": {},
       "inputNodes": [

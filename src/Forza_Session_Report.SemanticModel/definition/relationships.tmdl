@@ -1,0 +1,9 @@
+relationship 43184b02-31f7-f121-7c7f-7a04d3702c70
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Session Lap'.'Session Id'
+	toColumn: Session.SessionId
+
+relationship da6b5f61-74e0-ecf9-ad16-b8a3ed58a017
+	fromColumn: 'Session Lap Telemetry'.sessionLapKey
+	toColumn: 'Session Lap'.sessionLapKey
+

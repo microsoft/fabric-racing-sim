@@ -1,0 +1,91 @@
+table Session
+	lineageTag: 6983c623-63d1-4389-8b83-4ebb1c0d966e
+
+	column SessionId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 36a95136-c6c9-472e-890d-9ffed05b8f82
+		summarizeBy: none
+		sourceColumn: SessionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column SessionName
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 4aa60bcb-26f1-41d5-9606-c1969ec9ec5c
+		summarizeBy: none
+		sourceColumn: SessionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 4cbb2855-ca4b-4659-b91c-201b89a6be73
+		summarizeBy: none
+		sourceColumn: CarId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 7cf416f3-44ae-4c93-908e-bbb022553766
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Telephone
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 48c78348-f153-4b75-a575-6b4f0b701a12
+		summarizeBy: none
+		sourceColumn: Telephone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: string
+		sourceProviderType: datetimeoffset
+		lineageTag: a9f45dd3-fd7c-44a8-beb8-9c5c7a72c284
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartTime
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 1338a83a-e256-4486-8de7-714e879c8bd3
+		summarizeBy: none
+		sourceColumn: StartTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTime
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: e4b1a48e-8164-4c0c-8e1c-62648df9923d
+		summarizeBy: none
+		sourceColumn: EndTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Session = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    GetSessions1 = Source{[Name="GetSessions"]}[Data]
+				in
+				    GetSessions1
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
