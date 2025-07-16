@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDashboard",
+    "displayName": "RacingSim-Dashboard",
+    "description": "RacingSim-Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9760812b-e9b1-9bca-4a8b-666e05dbfeef"
+  }
+}

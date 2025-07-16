@@ -1,0 +1,1808 @@
+{
+  "schema_version": "60",
+  "tiles": [
+    {
+      "id": "5807cb24-c5bf-46b3-9fb8-5a50eaab61ff",
+      "title": "Total # of Racers",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 4,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "4595a715-45d0-4096-989f-dc28787b4ba8"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "24e4a2c7-7318-491d-bd4a-0e3ca845380c",
+      "title": "Current Leader",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 14,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "fc0122f2-e113-4e31-8dd6-acef4657a180"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "3e1129ba-5407-41d7-9e83-2016424298a1",
+      "title": "Total # of Rows",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 19,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "352b1a7b-9e58-4cf6-be93-6b4c30bc6ce3"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "ea24f7a2-8da1-4564-b009-78aa56911cf4",
+      "title": "Speed",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 9,
+        "y": 3,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "b93faea6-969d-4363-b2cb-692476719742"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "991a678c-08e4-4cb0-935d-95986be7cf59",
+      "title": "Torque",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 14,
+        "y": 3,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "190766f1-a823-4a3a-9425-e02c3a6463c5"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2"
+      }
+    },
+    {
+      "id": "13c94e07-2b08-4b82-b862-eb283a7c7de3",
+      "title": "Power",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 19,
+        "y": 3,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "1d06460b-1342-4f88-afd8-d85a3c5b43a3"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2"
+      }
+    },
+    {
+      "id": "b2499bb7-4104-4195-b593-d6d000383fe4",
+      "title": "Total Laps Completed",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 9,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "b5ddc4cf-5d02-4193-8015-87273bcafd0e"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "29eb8e98-9cbe-414c-8d9e-8e7b8664fa12",
+      "title": "Wheel RPM",
+      "visualType": "multistat",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 3,
+        "y": 3,
+        "width": 6,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "848e6738-e854-4be3-a520-24d220a50fc1"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "multiStat__displayOrientation": "horizontal",
+        "multiStat__labelColumn": null,
+        "multiStat__slot": {
+          "width": 2,
+          "height": 2
+        },
+        "colorRules": []
+      }
+    },
+    {
+      "id": "2f191715-d95b-4db6-ac42-5bd23f23c582",
+      "title": "Wheel RPM",
+      "visualType": "multistat",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 3,
+        "y": 10,
+        "width": 6,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "75c459a1-0508-4292-a096-81a2f3baeb71"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "multiStat__displayOrientation": "horizontal",
+        "multiStat__labelColumn": null,
+        "multiStat__slot": {
+          "width": 2,
+          "height": 2
+        },
+        "colorRules": []
+      }
+    },
+    {
+      "id": "4f3a15ed-4150-49c9-85b6-8b40c56a830e",
+      "title": "Speed",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 9,
+        "y": 10,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "ea579508-5992-42bb-a3bb-6b9601c38598"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "97369caf-b00c-46a5-8931-832b1bef8a59",
+      "title": "New tile",
+      "visualType": "markdownCard",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 4,
+        "height": 3
+      },
+      "markdownText": "FabCon 2025\n",
+      "visualOptions": {}
+    },
+    {
+      "id": "58f7a96c-b834-4abb-8919-e4a88d840524",
+      "title": "Torque",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 14,
+        "y": 10,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "a17c298d-4c14-4631-90e7-11c6c2719f2c"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "ad25a342-41f5-481d-b872-2c1f570aae32",
+      "title": "Power",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 19,
+        "y": 10,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "ad721434-2df5-4872-be22-532125575404"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "3388d617-a4c8-4357-8a3e-86a01f61b6dd",
+      "title": "Leaderboard",
+      "visualType": "table",
+      "pageId": "c219eed2-c95f-4570-84be-ba3a0823299b",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 16,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "97d30b30-7786-4c0d-8bab-1d1adfb1f830"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "fff03756-29e7-4ea8-b44d-4758eb725e7a",
+      "title": "Racer Name",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 0,
+        "y": 3,
+        "width": 3,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "d760a167-e71a-4177-b378-8d2fa174fc24"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "9a85d8ac-c5b0-4bbd-84cd-89efcfde1368",
+      "title": "Racer Name",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 0,
+        "y": 10,
+        "width": 3,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "a3b8a266-5271-46f4-ae7c-2ed3101cd831"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "2172ae9d-bfac-4d90-982e-6e1919334a77",
+      "title": "New tile",
+      "visualType": "markdownCard",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 4,
+        "height": 3
+      },
+      "markdownText": "FabCon Vegas 2025\n",
+      "visualOptions": {}
+    },
+    {
+      "id": "6668370d-d1e4-4e61-809e-54df20bcf365",
+      "title": "Total # of Racers",
+      "visualType": "card",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 4,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "d4136147-a57f-4a7e-a08d-11c5ac93679c"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "ad99e2b2-602a-4ff9-be7b-233e1c150c8e",
+      "title": "Total Laps Completed",
+      "visualType": "card",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 9,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "5be901ac-e50d-4952-a454-5f2bf19d9527"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "98b7b65c-0fd7-4a94-b59d-118e57a0a78b",
+      "title": "Current Leader",
+      "visualType": "card",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 14,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "c945a871-d18d-4037-95f2-3474fbb3e071"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "eacd80a1-89c4-4119-a2e5-9a78ace381a9",
+      "title": "Total # of Rows",
+      "visualType": "card",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 19,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "09c56edd-d73e-4c70-83b9-0ef9aff4beff"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "93baf30b-1e8b-4038-8ebd-a204ee0f5c39",
+      "title": "Speed vs Power vs Torque (Racer 1)",
+      "visualType": "timechart",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 0,
+        "y": 3,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "7448eea9-9dac-4164-8a9a-eb07f3d3cb66"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": true,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": null,
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        }
+      }
+    },
+    {
+      "id": "777fc3cb-ebd1-4610-8159-569d9d33b93d",
+      "title": "Speed comparison across laps (Racer 1)",
+      "visualType": "timechart",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 12,
+        "y": 3,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "46ea9dbf-2131-4c19-a673-4c5fc4053e46"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": true,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": [
+          "value"
+        ],
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        }
+      }
+    },
+    {
+      "id": "75e3db4f-6374-4d71-87ee-35d9f3f1345d",
+      "title": "Racer Name",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 0,
+        "y": 17,
+        "width": 3,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "0bd8062e-61a0-4513-8a77-35e54c1dcd92"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "caa6f8ac-ef7f-4052-b93c-9628b5cae0f6",
+      "title": "Wheel RPM",
+      "visualType": "multistat",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 3,
+        "y": 17,
+        "width": 6,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "0ebee676-2af6-4ecc-a057-07541ff954c7"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "multiStat__displayOrientation": "horizontal",
+        "multiStat__labelColumn": null,
+        "multiStat__slot": {
+          "width": 2,
+          "height": 2
+        },
+        "colorRules": []
+      }
+    },
+    {
+      "id": "5b789011-5cf0-4514-9831-47298439e1bf",
+      "title": "Speed",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 9,
+        "y": 17,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "189ab868-6e3d-494a-b811-674386eeecd9"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "66666b7c-3dc7-4fb0-868d-a267188a70af",
+      "title": "Torque",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 14,
+        "y": 17,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "158bb681-d3cd-4f28-9931-e8107124ecf0"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "90d4fb01-00af-43dc-96b6-fcc822a4e764",
+      "title": "Power",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 19,
+        "y": 17,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "6e581e6e-d518-4039-ac85-2fcac58c0c6e"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "4ad8a810-8451-4dbd-86b9-f26393306166",
+      "title": "Racer Name",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 0,
+        "y": 24,
+        "width": 3,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "eb4396a5-1cb1-43d8-be42-83a9732e7666"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "7746e725-5be0-4138-84cb-38f66e5853e6",
+      "title": "Wheel RPM",
+      "visualType": "multistat",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 3,
+        "y": 24,
+        "width": 6,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "a52f5e62-82be-4ace-8126-c3dbd27834ac"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "multiStat__displayOrientation": "horizontal",
+        "multiStat__labelColumn": null,
+        "multiStat__slot": {
+          "width": 2,
+          "height": 2
+        },
+        "colorRules": []
+      }
+    },
+    {
+      "id": "ec7b78ec-3a16-45c9-ac9c-ded68385862e",
+      "title": "Speed",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 9,
+        "y": 24,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "019a75cb-c97a-4150-90c8-bc4ee764c6ef"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "5cf338e8-ee17-4390-83ad-8e43ace6b6e9",
+      "title": "Torque",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 14,
+        "y": 24,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "c2ed294c-52e0-4791-9300-2cbac9384abd"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "b89e4523-a526-4a15-a69f-972ee244496b",
+      "title": "Power",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 19,
+        "y": 24,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "c046038d-3260-4a7c-8566-eb74d3199b65"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "81bc4609-c587-4c01-ad35-976997e627f2",
+      "title": "Racer Name",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 0,
+        "y": 31,
+        "width": 3,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "6d7ded2e-dfcb-4c87-a2df-1119e84f6bde"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "8eb6624e-2802-49cd-be54-004682cae4b2",
+      "title": "Wheel RPM",
+      "visualType": "multistat",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 3,
+        "y": 31,
+        "width": 6,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "1a4168d7-b75c-4511-8f02-29a26a698b2a"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "multiStat__displayOrientation": "horizontal",
+        "multiStat__labelColumn": null,
+        "multiStat__slot": {
+          "width": 2,
+          "height": 2
+        },
+        "colorRules": []
+      }
+    },
+    {
+      "id": "02169b1b-9d7b-403e-9faa-c4f47792bcc2",
+      "title": "Speed",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 9,
+        "y": 31,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "5f7c7c30-850f-4501-a75d-b78446ad58ba"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "c43d23d9-4519-4932-8f1c-cfdb22c6e70a",
+      "title": "Torque",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 14,
+        "y": 31,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "a7efb077-b64d-4829-8e3e-a6b10ca72480"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "dcd61e34-1d08-4a60-8fbc-bdfebfd8628c",
+      "title": "Power",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 19,
+        "y": 31,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "5367c713-6ce7-467d-91d7-374936e5b16e"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "68087130-ed59-41e0-8944-c35fc57d03a9",
+      "title": "Racer Name",
+      "visualType": "card",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 0,
+        "y": 38,
+        "width": 3,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "8542883c-ee63-4dfd-9fec-cdb39c40244f"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "6bdaa1e5-5264-4aab-a159-da2682230aa3",
+      "title": "Wheel RPM",
+      "visualType": "multistat",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 3,
+        "y": 38,
+        "width": 6,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "bdb63fe5-c6ad-441f-9444-6990b9aa5acc"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "multiStat__displayOrientation": "horizontal",
+        "multiStat__labelColumn": null,
+        "multiStat__slot": {
+          "width": 2,
+          "height": 2
+        },
+        "colorRules": []
+      }
+    },
+    {
+      "id": "9d0014dc-15e3-432d-adef-d605bd4cb2a4",
+      "title": "Speed",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 9,
+        "y": 38,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "d31bf166-fc90-4367-9ad3-cc50513fbabe"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "3e352060-3c23-4166-a2f6-b0f8ca35372f",
+      "title": "Torque",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 14,
+        "y": 38,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "c918a64d-7bb9-4ddb-bc80-f4b1202ebb8f"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "89b3aed8-7b6d-49cd-84c1-f22c22344a17",
+      "title": "Power",
+      "visualType": "plotly",
+      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
+      "layout": {
+        "x": 19,
+        "y": 38,
+        "width": 5,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "0fd8192a-655c-4d00-a95c-23734cd994fa"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "plotly__version": "2",
+        "imageAllowlist": ""
+      }
+    },
+    {
+      "id": "51bd802d-316f-4655-bfe2-8d506e26d78b",
+      "title": "Speed vs Power vs Torque (Racer 2)",
+      "visualType": "timechart",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 0,
+        "y": 15,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "9952e720-4e35-45d8-a843-687ff36bcb7e"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": true,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": null,
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        }
+      }
+    },
+    {
+      "id": "1d56c9c1-e938-4b4d-9e8f-9b3af2e346a8",
+      "title": "Speed comparison across laps (Racer 2)",
+      "visualType": "timechart",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 12,
+        "y": 15,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "3b247eae-e04f-4db2-bafe-77da44d0cdc0"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": true,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": [
+          "value"
+        ],
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        }
+      }
+    },
+    {
+      "id": "5af4766e-6de0-4b61-93f4-6d01142a3c4a",
+      "title": "Speed vs Power vs Torque (Racer 3)",
+      "visualType": "timechart",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 0,
+        "y": 27,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "9acd042d-18d7-4a7f-98d5-6ecfc1f9f354"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": true,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": null,
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        }
+      }
+    },
+    {
+      "id": "21756710-f75d-496b-bab1-2417ed030755",
+      "title": "Speed comparison across laps (Racer 3)",
+      "visualType": "timechart",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 12,
+        "y": 27,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "d1a657a8-9536-4da2-8a2d-b69aefbc4554"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": true,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": [
+          "value"
+        ],
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        }
+      }
+    },
+    {
+      "id": "d9a820a1-81a1-4d08-a93f-36b438a4f7b4",
+      "title": "Speed vs Power vs Torque (Racer 4)",
+      "visualType": "timechart",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 0,
+        "y": 39,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "071c5794-2631-454b-bc87-7474cbe981e1"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": true,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": null,
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        }
+      }
+    },
+    {
+      "id": "94776b0e-a6ba-4bce-bed2-2a1225ceff49",
+      "title": "Speed comparison across laps (Racer 4)",
+      "visualType": "timechart",
+      "pageId": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "layout": {
+        "x": 12,
+        "y": 39,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "add17bc1-e25d-4d14-9f98-34764d79d745"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": true,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": [
+          "value"
+        ],
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        }
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [],
+  "dataSources": [
+    {
+      "kind": "kusto-trident",
+      "scopeId": "kusto-trident",
+      "clusterUri": "",
+      "database": "c0d8a17c-46b7-8722-48ee-e7e2a912e896",
+      "name": "RacingSim-EH",
+      "id": "0cdc8d19-882a-46cc-af6a-4371abbe7663",
+      "workspace": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Example Queries",
+      "id": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3"
+    },
+    {
+      "name": "Leaderboard",
+      "id": "c219eed2-c95f-4570-84be-ba3a0823299b"
+    },
+    {
+      "id": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
+      "name": "Post Race Analysis"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| summarize dcount(SessionName)\n",
+      "id": "4595a715-45d0-4096-989f-dc28787b4ba8",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "GetSessionLapData\n| where Rank == 1\n| project SessionName",
+      "id": "fc0122f2-e113-4e31-8dd6-acef4657a180",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| count",
+      "id": "352b1a7b-9e58-4cf6-be93-6b4c30bc6ce3",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 1\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "id": "b93faea6-969d-4363-b2cb-692476719742",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 1\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "id": "190766f1-a823-4a3a-9425-e02c3a6463c5",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 1\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "id": "1d06460b-1342-4f88-afd8-d85a3c5b43a3",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| summarize dcount(LapId) by SessionName\n| summarize sum(dcount_LapId)",
+      "id": "b5ddc4cf-5d02-4193-8015-87273bcafd0e",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 1\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "id": "848e6738-e854-4be3-a520-24d220a50fc1",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 2\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "id": "75c459a1-0508-4292-a096-81a2f3baeb71",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "id": "ea579508-5992-42bb-a3bb-6b9601c38598",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "id": "a17c298d-4c14-4631-90e7-11c6c2719f2c",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "id": "ad721434-2df5-4872-be22-532125575404",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "GenerateLeaderboard",
+      "id": "97d30b30-7786-4c0d-8bab-1d1adfb1f830",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where CarId == 1\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
+      "id": "d760a167-e71a-4177-b378-8d2fa174fc24",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project SessionName",
+      "id": "a3b8a266-5271-46f4-ae7c-2ed3101cd831",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| summarize dcount(SessionName)\n",
+      "id": "d4136147-a57f-4a7e-a08d-11c5ac93679c",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| summarize dcount(LapId) by SessionName\n| summarize sum(dcount_LapId)",
+      "id": "5be901ac-e50d-4952-a454-5f2bf19d9527",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "GetSessionLapData\n| where Rank == 1\n| project SessionName",
+      "id": "c945a871-d18d-4037-95f2-3474fbb3e071",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| count",
+      "id": "09c56edd-d73e-4c70-83b9-0ef9aff4beff",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = car_telemetry | where CarId == 1 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
+      "id": "7448eea9-9dac-4164-8a9a-eb07f3d3cb66",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = car_telemetry | where CarId ==1 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
+      "id": "46ea9dbf-2131-4c19-a673-4c5fc4053e46",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where CarId == 3\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
+      "id": "0bd8062e-61a0-4513-8a77-35e54c1dcd92",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 3\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "id": "0ebee676-2af6-4ecc-a057-07541ff954c7",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 3\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "id": "189ab868-6e3d-494a-b811-674386eeecd9",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 3\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "id": "158bb681-d3cd-4f28-9931-e8107124ecf0",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 3\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "id": "6e581e6e-d518-4039-ac85-2fcac58c0c6e",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where CarId == 4\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
+      "id": "eb4396a5-1cb1-43d8-be42-83a9732e7666",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 4\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "id": "a52f5e62-82be-4ace-8126-c3dbd27834ac",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 4\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "id": "019a75cb-c97a-4150-90c8-bc4ee764c6ef",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 4\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "id": "c2ed294c-52e0-4791-9300-2cbac9384abd",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 4\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "id": "c046038d-3260-4a7c-8566-eb74d3199b65",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where CarId == 5\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
+      "id": "6d7ded2e-dfcb-4c87-a2df-1119e84f6bde",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 5\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "id": "1a4168d7-b75c-4511-8f02-29a26a698b2a",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 5\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "id": "5f7c7c30-850f-4501-a75d-b78446ad58ba",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 5\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "id": "a7efb077-b64d-4829-8e3e-a6b10ca72480",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 5\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "id": "5367c713-6ce7-467d-91d7-374936e5b16e",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where CarId == 6\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
+      "id": "8542883c-ee63-4dfd-9fec-cdb39c40244f",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 6\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "id": "bdb63fe5-c6ad-441f-9444-6990b9aa5acc",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 6\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "id": "d31bf166-fc90-4367-9ad3-cc50513fbabe",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 6\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "id": "c918a64d-7bb9-4ddb-bc80-f4b1202ebb8f",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 6\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "id": "0fd8192a-655c-4d00-a95c-23734cd994fa",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = car_telemetry | where CarId == 2 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
+      "id": "9952e720-4e35-45d8-a843-687ff36bcb7e",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = car_telemetry | where CarId ==2 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
+      "id": "3b247eae-e04f-4db2-bafe-77da44d0cdc0",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = car_telemetry | where CarId == 3 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
+      "id": "9acd042d-18d7-4a7f-98d5-6ecfc1f9f354",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = car_telemetry | where CarId ==3 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
+      "id": "d1a657a8-9536-4da2-8a2d-b69aefbc4554",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = car_telemetry | where CarId == 4 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
+      "id": "071c5794-2631-454b-bc87-7474cbe981e1",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = car_telemetry | where CarId ==4 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
+      "id": "add17bc1-e25d-4d14-9f98-34764d79d745",
+      "usedVariables": []
+    }
+  ]
+}

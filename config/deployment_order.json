@@ -1,0 +1,59 @@
+[
+    {
+        "name": "Workspace.src",
+        "id": "75f1967f-cc30-4f1d-8923-d9fdd5a9b4d4",
+        "type": "Core"
+    },
+    {
+        "name": "RacingSim-EH.Eventhouse",
+        "id": "c32798b0-b8ca-be45-40bb-870e44624f52",
+        "kustoQueryUri": "kusto_query_uri",
+        "kustoIngestUri": "kusto_ingest_uri"
+    },
+    {
+        "name": "RacingSim-EH.KQLDatabase",
+        "id": "c32798b0-b8ca-be45-40bb-870e44624f52",
+        "parent": "RacingSim-EH.Eventhouse"
+    },
+    {
+        "name": "RacingSim-ES.Eventstream",
+        "id": "8e08ac2f-66f0-8dd5-4642-902e58c9392f",
+        "destinations": [
+            {
+                "name": "Eventhouse",
+                "itemName": "RacingSim-EH.KQLDatabase",
+                "type": "Eventhouse"
+            }
+        ]
+    },
+    {
+        "name": "RacingSim-Dashboard.KQLDashboard",
+        "id": "9760812b-e9b1-9bca-4a8b-666e05dbfeef",
+        "datasources": [
+            {
+                "name": "RacingSim-EH",
+                "itemName": "RacingSim-EH.KQLDatabase"
+            }
+        ]
+    },
+    {
+        "name": "RacingSim-DashboardEx.KQLDashboard",
+        "id": "c0e120f5-307f-8f27-4deb-ab6d9c8d912c",
+        "datasources": [
+            {
+                "name": "RacingSim-EH",
+                "itemName": "RacingSim-EH.KQLDatabase"
+            }
+        ]
+    },
+    {
+        "name": "RacingSim-EH_queryset.KQLQueryset",
+        "id": "e75740bc-3d24-b7de-48d6-6c58786871e7",
+        "datasources": [
+            {
+                "name": "RacingSim-EH",
+                "itemName": "RacingSim-EH.KQLDatabase"
+            }
+        ]
+    }
+]

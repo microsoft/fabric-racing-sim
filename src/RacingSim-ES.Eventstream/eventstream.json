@@ -1,0 +1,45 @@
+{
+  "sources": [
+    {
+      "id": "ce40729f-ef00-4e54-b8a9-ac55d1292ec5",
+      "name": "forza-telemetry-client",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "413d17f3-d285-4ea8-b4b3-9c140b8afb20",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "DirectIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "c0d8a17c-46b7-8722-48ee-e7e2a912e896",
+        "tableName": "rawtelemetry",
+        "connectionName": "rawtelemetry",
+        "mappingRuleName": "rawtelemetry_mapping"
+      },
+      "inputNodes": [
+        {
+          "name": "RacingSim-ES-stream"
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "57920350-c049-4cd9-b6b4-53e089e030f4",
+      "name": "RacingSim-ES-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "forza-telemetry-client"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.0"
+}
