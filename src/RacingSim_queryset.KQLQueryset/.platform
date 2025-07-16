@@ -1,11 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Eventstream",
-    "displayName": "RacingSimES"
+    "type": "KQLQueryset",
+    "displayName": "RacingSim_queryset",
+    "description": "RacingSim_queryset"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "8e08ac2f-66f0-8dd5-4642-902e58c9392f"
+    "logicalId": "e75740bc-3d24-b7de-48d6-6c58786871e7"
   }
 }

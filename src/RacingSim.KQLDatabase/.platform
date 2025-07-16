@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Eventhouse",
-    "displayName": "RacingSim-EH",
-    "description": "RacingSim-EH"
+    "type": "KQLDatabase",
+    "displayName": "RacingSim",
+    "description": "RacingSim"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "c32798b0-b8ca-be45-40bb-870e44624f52"
+    "logicalId": "c0d8a17c-46b7-8722-48ee-e7e2a912e896"
   }
 }
