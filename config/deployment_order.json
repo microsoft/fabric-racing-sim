@@ -47,11 +47,19 @@
         ]
     },
     {
-        "name": "RacingSim_queryset.KQLQueryset",
+        "name": "RacingSim.KQLQueryset",
         "id": "e75740bc-3d24-b7de-48d6-6c58786871e7",
         "datasources": [
             {
-                "name": "RacingSim-EH",
+                "itemName": "RacingSim.KQLDatabase"
+            }
+        ]
+    },
+    {
+        "name": "Forza_Session_Report.SemanticModel",
+        "id": "e20d5dc6-ad6c-ab7c-4d8d-720a26f28ace",
+        "datasources": [
+            {
                 "itemName": "RacingSim.KQLDatabase"
             }
         ]
