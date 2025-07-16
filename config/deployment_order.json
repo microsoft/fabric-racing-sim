@@ -47,7 +47,7 @@
         ]
     },
     {
-        "name": "RacingSim-EH_queryset.KQLQueryset",
+        "name": "RacingSim_queryset.KQLQueryset",
         "id": "e75740bc-3d24-b7de-48d6-6c58786871e7",
         "datasources": [
             {
