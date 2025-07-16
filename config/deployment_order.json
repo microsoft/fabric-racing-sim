@@ -5,23 +5,23 @@
         "type": "Core"
     },
     {
-        "name": "RacingSim-EH.Eventhouse",
+        "name": "RacingSim.Eventhouse",
         "id": "c32798b0-b8ca-be45-40bb-870e44624f52",
         "kustoQueryUri": "kusto_query_uri",
         "kustoIngestUri": "kusto_ingest_uri"
     },
     {
-        "name": "RacingSim-EH.KQLDatabase",
+        "name": "RacingSim.KQLDatabase",
         "id": "c32798b0-b8ca-be45-40bb-870e44624f52",
-        "parent": "RacingSim-EH.Eventhouse"
+        "parent": "RacingSim.Eventhouse"
     },
     {
-        "name": "RacingSim-ES.Eventstream",
+        "name": "RacingSim.Eventstream",
         "id": "8e08ac2f-66f0-8dd5-4642-902e58c9392f",
         "destinations": [
             {
                 "name": "Eventhouse",
-                "itemName": "RacingSim-EH.KQLDatabase",
+                "itemName": "RacingSim.KQLDatabase",
                 "type": "Eventhouse"
             }
         ]
@@ -32,7 +32,7 @@
         "datasources": [
             {
                 "name": "RacingSim-EH",
-                "itemName": "RacingSim-EH.KQLDatabase"
+                "itemName": "RacingSim.KQLDatabase"
             }
         ]
     },
@@ -42,7 +42,7 @@
         "datasources": [
             {
                 "name": "RacingSim-EH",
-                "itemName": "RacingSim-EH.KQLDatabase"
+                "itemName": "RacingSim.KQLDatabase"
             }
         ]
     },
@@ -52,7 +52,7 @@
         "datasources": [
             {
                 "name": "RacingSim-EH",
-                "itemName": "RacingSim-EH.KQLDatabase"
+                "itemName": "RacingSim.KQLDatabase"
             }
         ]
     }
