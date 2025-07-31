@@ -10,7 +10,7 @@
   <b>Table of Contents</b><br>
   <a href="#-overview">Overview</a> •
   <a href="#-why-this-project-matters">Why This Project Matters</a> •
-  <a href="#-key-features">Key Features</a> •
+  <a href="#-how-the-solution-is-built">How the solution is built</a> •
   <a href="#-technology-stack">Technology Stack</a> •
   <a href="#-prerequisites">Prerequisites</a> •
   <a href="#-quick-start">Quick Start</a> •
@@ -21,9 +21,9 @@
 
 ## 🚀 Overview
 
-**Fabric Racing Simulator** is a showcase project that combines real-time telemetry from **Forza Motorsport** with the advanced analytics capabilities of **Microsoft Fabric**. This platform demonstrates how in-game racing data can be captured, processed, and visualized instantly using Microsoft Fabric Real-time Intelligence (RTI), turning your gameplay into actionable racing insights.
+**Fabric Racing Simulator** is a showcase project that combines real-time telemetry from **Forza Motorsport** with the advanced analytics capabilities of **Microsoft Fabric Real-Time Intelligence**. This platform demonstrates how in-game racing data can be captured, processed, and visualized instantly using Microsoft Fabric Real-time Intelligence (RTI), turning your gameplay into actionable racing insights.
 
-Imagine playing your favorite racing game while simultaneously capturing, processing, and visualizing every aspect of your performance in real-time. From telemetry data to lap times, from tire wear to Handbrakes – everything is streamed, stored, and displayed on stunning real-time dashboards.
+Imagine playing your favorite racing game while simultaneously capturing, processing, and visualizing every aspect of your performance in real-time. From telemetry data to lap times, from tire wear to handbrakes – everything is streamed, stored, and displayed on stunning real-time dashboards.
 
 ### 🎯 Why This Project Matters
 
@@ -32,12 +32,11 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 - **Microsoft Fabric Showcase**: Explore the full potential of Microsoft's unified analytics platform
 - **Instant Insights**: Make data-driven decisions to improve your racing performance in real-time
 
-## ✨ Key Features
+## ✨ How the Solution is Built
 
 ### 📡 Real-time Data Ingestion
 
-**UDP Network Listener**: High-performance client that captures telemetry data from Forza Motorsport, enrichies it and sends it to Microsoft Fabric
-
+**UDP Network Listener**: High-performance client that captures telemetry data from Forza Motorsport, enriches it and sends it to Microsoft Fabric for
 
 ### 🔄 Intelligent Data Processing
 - **Forza Data Parser**: Sophisticated parsing engine that understands Forza's telemetry format
@@ -45,7 +44,7 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 - **Stream Processing**: Real-time data transformation and aggregation
 
 ### 📊 Microsoft Fabric Integration
-- **Fabric RTI**: Seamless integration with Microsoft Fabric's Real-time Intelligence
+- **Fabric Real-Time Intelligence**: Seamless integration with Microsoft Fabric's Real-time Intelligence
 - **Auto-scaling**: Handles data spikes during intense racing moments
 - **Long-term Storage**: Historical data retention for trend analysis and improvement tracking
 
@@ -53,14 +52,14 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 - **Real-time Visualizations**: See your data update as you race
 - **Custom KPIs**: Track metrics that matter to you
 - **Multi-session Comparison**: Compare your performance across different races and tracks
-- **Advanced visuals**: with Ploty integration
+- **Advanced visuals**: with Plotly integration
 
 ## 🛠️ Technology Stack
 
 - **Data Ingestion**: UDP Network Protocol, .NET Desktop application
-- **Stream Processing**: Microsoft Fabric Real-time Intelligence
-- **Data Storage**: Microsoft Fabric EventHouse + Lakehouse
-- **Visualization**: Fqbric Real-time Dashboards
+- **Stream Processing**: Microsoft Fabric Real-Time Intelligence Eventstreams
+- **Data Storage**: Microsoft Fabric Eventhouse + Lakehouse
+- **Visualization**: Fabric Real-Time Dashboards
 - **Gaming Platform**: Forza Motorsport (Xbox/PC)
 
 ## 📋 Prerequisites
@@ -108,7 +107,7 @@ or
 - 🎮 **Driver Inputs**: Steering angle, throttle/brake pressure, gear changes
 - 📈 **Calculated Metrics**: G-forces, slip angles, optimal racing line deviation
 
-## 🤝 Contributing
+## 🤝 Contribute
 
 We believe in the power of community! Whether you're fixing bugs, adding features, or improving documentation, your contributions are welcome.
 
