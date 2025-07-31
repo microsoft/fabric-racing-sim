@@ -78,7 +78,7 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
    ```
 
 2. **Configure Forza Motorsport**
-   - Enable UDP telemetry output in game settings
+   - Enable UDP telemetry output in game settings 
    - Set the appropriate IP and port configuration
 
 or 
@@ -87,7 +87,7 @@ or
     > **Note**: Forza Data Simulator is a .NET application that simulates telemetry data for testing purposes.
 
 3. **Set Up Microsoft Fabric**
-   - See [Fabric Setup guide](docs/setup-fabric.md) for detailed instructions
+   - See [Fabric Setup guide](docs/setup-fabric.md) for detailed instructions 
 
 4. **Launch the Client**
    ```bash
