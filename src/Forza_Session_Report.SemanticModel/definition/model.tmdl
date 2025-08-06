@@ -10,9 +10,9 @@ annotation PBI_QueryOrder = ["Session Lap","Session","Session Lap Telemetry","Ev
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.144.1378.0 (25.06)+cba1e61f16ea36d44901f06fa446299040122394
+annotation PBIDesktopVersion = 2.145.1602.0 (25.07)+10647c9fa319b5e39936cdb21328038c371d1fe4
 
-annotation PBI_ProTooling = ["DevMode","TMDL-Extension"]
+annotation PBI_ProTooling = ["DevMode"]
 
 ref table 'Session Lap'
 ref table Session

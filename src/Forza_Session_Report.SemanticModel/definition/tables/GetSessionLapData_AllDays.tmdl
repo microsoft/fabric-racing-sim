@@ -120,7 +120,8 @@ table GetSessionLapData_AllDays
 		source =
 				let
 				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
-				    GetSessionLapData_AllDays = Source{[Name="GetSessionLapData_AllDays"]}[Data]
+				    fGetSessionLapDataAllDays = Source{[Name="GetSessionLapDataAllDays"]}[Data],
+				    GetSessionLapData_AllDays = fGetSessionLapDataAllDays(null, null)
 				in
 				    GetSessionLapData_AllDays
 

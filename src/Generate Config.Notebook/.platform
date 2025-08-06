@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "KQLDashboard",
-    "displayName": "RacingSim-Dashboard",
-    "description": "RacingSim-Dashboard"
+    "type": "Notebook",
+    "displayName": "Generate Config",
+    "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "9760812b-e9b1-9bca-4a8b-666e05dbfeef"
+    "logicalId": "5ddf2e6a-2a2e-a550-42a8-cef88f6bb773"
   }
 }

@@ -27,18 +27,8 @@
         ]
     },
     {
-        "name": "RacingSim-Dashboard.KQLDashboard",
+        "name": "RacingSim.KQLDashboard",
         "id": "9760812b-e9b1-9bca-4a8b-666e05dbfeef",
-        "datasources": [
-            {
-                "name": "RacingSim-EH",
-                "itemName": "RacingSim.KQLDatabase"
-            }
-        ]
-    },
-    {
-        "name": "RacingSim-DashboardEx.KQLDashboard",
-        "id": "c0e120f5-307f-8f27-4deb-ab6d9c8d912c",
         "datasources": [
             {
                 "name": "RacingSim-EH",
@@ -73,5 +63,9 @@
         "name": "Forza_Session_Report.Report",
         "id": "65c4c58f-2ca3-9fc6-4e21-2ad942f4aa45",
         "datasource": "Forza_Session_Report.SemanticModel"
+    },
+    {
+        "name": "Generate Config.Notebook",
+        "id": "5ddf2e6a-2a2e-a550-42a8-cef88f6bb773"
     }
 ]

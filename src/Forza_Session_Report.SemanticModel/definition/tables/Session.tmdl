@@ -81,9 +81,10 @@ table Session
 		source =
 				let
 				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
-				    GetSessions1 = Source{[Name="GetSessions"]}[Data]
+				    fGetSessions = Source{[Name="GetSessions"]}[Data],
+				    GetSessions = fGetSessions(null, null)
 				in
-				    GetSessions1
+				    GetSessions
 
 	annotation PBI_ResultType = Table
 

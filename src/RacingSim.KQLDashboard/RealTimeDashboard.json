@@ -1,5 +1,9 @@
 {
   "schema_version": "60",
+  "autoRefresh": {
+    "enabled": true,
+    "defaultInterval": "10s"
+  },
   "tiles": [
     {
       "id": "5807cb24-c5bf-46b3-9fb8-5a50eaab61ff",
@@ -108,7 +112,8 @@
       },
       "visualOptions": {
         "xColumn": null,
-        "plotly__version": "2"
+        "plotly__version": "2",
+        "imageAllowlist": ""
       }
     },
     {
@@ -128,7 +133,8 @@
       },
       "visualOptions": {
         "xColumn": null,
-        "plotly__version": "2"
+        "plotly__version": "2",
+        "imageAllowlist": ""
       }
     },
     {
@@ -235,7 +241,7 @@
     },
     {
       "id": "97369caf-b00c-46a5-8931-832b1bef8a59",
-      "title": "New tile",
+      "title": "",
       "visualType": "markdownCard",
       "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
       "layout": {
@@ -306,14 +312,27 @@
       },
       "visualOptions": {
         "table__enableRenderLinks": true,
-        "colorRulesDisabled": true,
+        "colorRulesDisabled": false,
         "colorStyle": "light",
         "crossFilterDisabled": false,
         "drillthroughDisabled": false,
         "crossFilter": [],
         "drillthrough": [],
         "table__renderLinks": [],
-        "colorRules": []
+        "colorRules": [
+          {
+            "id": "87cb23aa-cc03-4537-abf4-fcb5a31e76ac",
+            "ruleType": "colorByValue",
+            "ruleName": "",
+            "applyTo": "rows",
+            "column": "Rank",
+            "themeName": "cold",
+            "maxValue": null,
+            "minValue": null,
+            "reverseTheme": false,
+            "visualType": "table"
+          }
+        ]
       }
     },
     {
@@ -805,236 +824,6 @@
       }
     },
     {
-      "id": "81bc4609-c587-4c01-ad35-976997e627f2",
-      "title": "Racer Name",
-      "visualType": "card",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 0,
-        "y": 31,
-        "width": 3,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "6d7ded2e-dfcb-4c87-a2df-1119e84f6bde"
-      },
-      "visualOptions": {
-        "multiStat__textSize": "auto",
-        "multiStat__valueColumn": null,
-        "colorRulesDisabled": false,
-        "colorStyle": "light",
-        "colorRules": []
-      }
-    },
-    {
-      "id": "8eb6624e-2802-49cd-be54-004682cae4b2",
-      "title": "Wheel RPM",
-      "visualType": "multistat",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 3,
-        "y": 31,
-        "width": 6,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "1a4168d7-b75c-4511-8f02-29a26a698b2a"
-      },
-      "visualOptions": {
-        "multiStat__textSize": "auto",
-        "multiStat__valueColumn": null,
-        "colorRulesDisabled": false,
-        "colorStyle": "light",
-        "multiStat__displayOrientation": "horizontal",
-        "multiStat__labelColumn": null,
-        "multiStat__slot": {
-          "width": 2,
-          "height": 2
-        },
-        "colorRules": []
-      }
-    },
-    {
-      "id": "02169b1b-9d7b-403e-9faa-c4f47792bcc2",
-      "title": "Speed",
-      "visualType": "plotly",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 9,
-        "y": 31,
-        "width": 5,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "5f7c7c30-850f-4501-a75d-b78446ad58ba"
-      },
-      "visualOptions": {
-        "xColumn": null,
-        "plotly__version": "2",
-        "imageAllowlist": ""
-      }
-    },
-    {
-      "id": "c43d23d9-4519-4932-8f1c-cfdb22c6e70a",
-      "title": "Torque",
-      "visualType": "plotly",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 14,
-        "y": 31,
-        "width": 5,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "a7efb077-b64d-4829-8e3e-a6b10ca72480"
-      },
-      "visualOptions": {
-        "xColumn": null,
-        "plotly__version": "2",
-        "imageAllowlist": ""
-      }
-    },
-    {
-      "id": "dcd61e34-1d08-4a60-8fbc-bdfebfd8628c",
-      "title": "Power",
-      "visualType": "plotly",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 19,
-        "y": 31,
-        "width": 5,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "5367c713-6ce7-467d-91d7-374936e5b16e"
-      },
-      "visualOptions": {
-        "xColumn": null,
-        "plotly__version": "2",
-        "imageAllowlist": ""
-      }
-    },
-    {
-      "id": "68087130-ed59-41e0-8944-c35fc57d03a9",
-      "title": "Racer Name",
-      "visualType": "card",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 0,
-        "y": 38,
-        "width": 3,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "8542883c-ee63-4dfd-9fec-cdb39c40244f"
-      },
-      "visualOptions": {
-        "multiStat__textSize": "auto",
-        "multiStat__valueColumn": null,
-        "colorRulesDisabled": false,
-        "colorStyle": "light",
-        "colorRules": []
-      }
-    },
-    {
-      "id": "6bdaa1e5-5264-4aab-a159-da2682230aa3",
-      "title": "Wheel RPM",
-      "visualType": "multistat",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 3,
-        "y": 38,
-        "width": 6,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "bdb63fe5-c6ad-441f-9444-6990b9aa5acc"
-      },
-      "visualOptions": {
-        "multiStat__textSize": "auto",
-        "multiStat__valueColumn": null,
-        "colorRulesDisabled": false,
-        "colorStyle": "light",
-        "multiStat__displayOrientation": "horizontal",
-        "multiStat__labelColumn": null,
-        "multiStat__slot": {
-          "width": 2,
-          "height": 2
-        },
-        "colorRules": []
-      }
-    },
-    {
-      "id": "9d0014dc-15e3-432d-adef-d605bd4cb2a4",
-      "title": "Speed",
-      "visualType": "plotly",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 9,
-        "y": 38,
-        "width": 5,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "d31bf166-fc90-4367-9ad3-cc50513fbabe"
-      },
-      "visualOptions": {
-        "xColumn": null,
-        "plotly__version": "2",
-        "imageAllowlist": ""
-      }
-    },
-    {
-      "id": "3e352060-3c23-4166-a2f6-b0f8ca35372f",
-      "title": "Torque",
-      "visualType": "plotly",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 14,
-        "y": 38,
-        "width": 5,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "c918a64d-7bb9-4ddb-bc80-f4b1202ebb8f"
-      },
-      "visualOptions": {
-        "xColumn": null,
-        "plotly__version": "2",
-        "imageAllowlist": ""
-      }
-    },
-    {
-      "id": "89b3aed8-7b6d-49cd-84c1-f22c22344a17",
-      "title": "Power",
-      "visualType": "plotly",
-      "pageId": "0f729ae6-2946-4b1c-8dc9-d26b7aa156a3",
-      "layout": {
-        "x": 19,
-        "y": 38,
-        "width": 5,
-        "height": 7
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "0fd8192a-655c-4d00-a95c-23734cd994fa"
-      },
-      "visualOptions": {
-        "xColumn": null,
-        "plotly__version": "2",
-        "imageAllowlist": ""
-      }
-    },
-    {
       "id": "51bd802d-316f-4655-bfe2-8d506e26d78b",
       "title": "Speed vs Power vs Torque (Racer 2)",
       "visualType": "timechart",
@@ -1351,10 +1140,348 @@
           "limit": 1
         }
       }
+    },
+    {
+      "id": "afe4a4ea-e35b-4dce-93ad-e5a3b035dc69",
+      "title": "New tile",
+      "visualType": "card",
+      "pageId": "530ea74e-45a6-4a56-8a21-21229eb2bb90",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 3,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "44cb1e6e-ade7-4d7b-96c9-d84ba4ab3119"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "06ea6bb6-024a-474b-834a-6f1c3f5718fa",
+      "title": "New tile",
+      "visualType": "markdownCard",
+      "pageId": "530ea74e-45a6-4a56-8a21-21229eb2bb90",
+      "layout": {
+        "x": 3,
+        "y": 16,
+        "width": 18,
+        "height": 13
+      },
+      "markdownText": "Enter text in [markdown](https://github.github.com/gfm/) format\n![](https://tse4.mm.bing.net/th/id/OIP.aiRopDhC86UaHzklAkCqNAHaFn?rs=1&pid=ImgDetMain&o=7&rm=3)\n\n\n\n",
+      "visualOptions": {}
+    },
+    {
+      "id": "51b3f3d8-4719-4e1c-8547-6128858fb452",
+      "title": "New tile",
+      "visualType": "markdown",
+      "pageId": "530ea74e-45a6-4a56-8a21-21229eb2bb90",
+      "layout": {
+        "x": 3,
+        "y": 0,
+        "width": 17,
+        "height": 16
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "76a375e0-6e86-46e3-b3b4-5d5d3dc5a3b8"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "imageAllowlist": "https://tse4.mm.bing.net/th/id/OIP.aiRopDhC86UaHzklAkCqNAHaFn?rs=1&pid=ImgDetMain&o=7&rm=3"
+      }
+    },
+    {
+      "id": "ca38d22c-14bf-44f2-8720-085f75e3d6dd",
+      "title": "Tempest",
+      "visualType": "timechart",
+      "pageId": "c5512c23-921d-45b8-a509-c0cfbf87b4db",
+      "layout": {
+        "x": 0,
+        "y": 4,
+        "width": 24,
+        "height": 11
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "ae171f4b-44b2-42d4-9484-d6bc8560e5f5"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "0cb53e03-6db7-456f-82cd-d6c0ece6020b",
+      "title": "Cyclone",
+      "visualType": "timechart",
+      "pageId": "c5512c23-921d-45b8-a509-c0cfbf87b4db",
+      "layout": {
+        "x": 0,
+        "y": 15,
+        "width": 24,
+        "height": 11
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "157edb19-5c3a-4a87-8e8f-bf72dd7d752b"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "7534931f-8b57-4715-ad91-9930496251b7",
+      "title": "Thunder",
+      "visualType": "timechart",
+      "pageId": "c5512c23-921d-45b8-a509-c0cfbf87b4db",
+      "layout": {
+        "x": 0,
+        "y": 26,
+        "width": 24,
+        "height": 11
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "16cabaca-941e-4089-b110-a81fecb6539d"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "158d3a7a-e402-4c9d-995a-2a88a204639c",
+      "title": "Lighting",
+      "visualType": "timechart",
+      "pageId": "c5512c23-921d-45b8-a509-c0cfbf87b4db",
+      "layout": {
+        "x": 0,
+        "y": 37,
+        "width": 24,
+        "height": 11
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "91c55afd-f5c4-4622-89d3-81263826d385"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "9f8c23a9-6eaf-4b0f-a0ba-7b3b8326c944",
+      "title": "Best Lap Time",
+      "visualType": "card",
+      "pageId": "c5512c23-921d-45b8-a509-c0cfbf87b4db",
+      "layout": {
+        "x": 15,
+        "y": 0,
+        "width": 4,
+        "height": 4
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "7cc96056-44e2-4db4-894b-2223d0612d76"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "025d3cd0-f7e3-4948-982f-9bf3ef80a9b4",
+      "title": "Latency",
+      "visualType": "card",
+      "pageId": "c5512c23-921d-45b8-a509-c0cfbf87b4db",
+      "layout": {
+        "x": 11,
+        "y": 0,
+        "width": 4,
+        "height": 4
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "f999f8d4-e302-4040-aec8-3140148eef99"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "colorRules": []
+      }
+    },
+    {
+      "id": "4af67d51-86aa-4ea2-a72f-e3a88bb7210d",
+      "title": "New tile",
+      "visualType": "multistat",
+      "pageId": "c5512c23-921d-45b8-a509-c0cfbf87b4db",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 11,
+        "height": 4
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "e6b84de1-530d-4997-b2e8-69f5a614b43d"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": "Data",
+        "colorRulesDisabled": false,
+        "colorStyle": "light",
+        "multiStat__displayOrientation": "horizontal",
+        "multiStat__labelColumn": "TelemetryPoint",
+        "multiStat__slot": {
+          "width": 2,
+          "height": 1
+        },
+        "colorRules": []
+      }
     }
   ],
-  "baseQueries": [],
-  "parameters": [],
+  "baseQueries": [
+    {
+      "id": "894130ed-016f-4923-a437-8fb6c450d0b2",
+      "queryId": "8409a27e-2df2-449b-8e90-73dd589f2092",
+      "variableName": "_carTelemetry"
+    }
+  ],
+  "parameters": [
+    {
+      "kind": "datetime",
+      "id": "aa2a995a-fb37-48b9-bf60-9b84c3d0339f",
+      "displayName": "Calendar",
+      "description": "",
+      "variableName": "_calendar",
+      "selectionType": "scalar",
+      "includeAllOption": false,
+      "defaultValue": {
+        "kind": "no-selection"
+      },
+      "dataSource": {
+        "kind": "query",
+        "columns": {
+          "value": "Date",
+          "label": "Date"
+        },
+        "queryRef": {
+          "kind": "query",
+          "queryId": "abd7cbf7-6b6e-4ffe-89ee-3a312adf6873"
+        },
+        "autoReset": true
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
   "dataSources": [
     {
       "kind": "kusto-trident",
@@ -1378,6 +1505,14 @@
     {
       "id": "bf40ae40-01df-4120-8363-fc9ba4a7c8ea",
       "name": "Post Race Analysis"
+    },
+    {
+      "name": "Test",
+      "id": "530ea74e-45a6-4a56-8a21-21229eb2bb90"
+    },
+    {
+      "name": "Page 5",
+      "id": "c5512c23-921d-45b8-a509-c0cfbf87b4db"
     }
   ],
   "queries": [
@@ -1386,108 +1521,132 @@
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| summarize dcount(SessionName)\n",
+      "text": "_carTelemetry\n| summarize dcount(SessionName)\n",
       "id": "4595a715-45d0-4096-989f-dc28787b4ba8",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "GetSessionLapData\n| where Rank == 1\n| project SessionName",
+      "text": "GetSessionLapData(_calendar)\n| where Rank == 1\n| project SessionName",
       "id": "fc0122f2-e113-4e31-8dd6-acef4657a180",
-      "usedVariables": []
+      "usedVariables": [
+        "_calendar"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| count",
+      "text": "_carTelemetry\n| count",
       "id": "352b1a7b-9e58-4cf6-be93-6b4c30bc6ce3",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 1\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "text": "let speed = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Speed'\n    | where CarId == 1\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(speed),0,speed);\nPlotlyGaugeFl(value=value)",
       "id": "b93faea6-969d-4363-b2cb-692476719742",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 1\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "text": "let torque = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Torque'\n    | where CarId == 1\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(torque),0,torque);\nPlotlyGaugeFl(value=value)",
       "id": "190766f1-a823-4a3a-9425-e02c3a6463c5",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 1\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "text": "let power = toscalar(_carTelemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 1\n| summarize arg_max(StartTime, *)\n| project Data);\nlet value = iff(isempty(power),0,power);\nPlotlyGaugeFl(value=value)",
       "id": "1d06460b-1342-4f88-afd8-d85a3c5b43a3",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| summarize dcount(LapId) by SessionName\n| summarize sum(dcount_LapId)",
+      "text": "_carTelemetry\n| summarize dcount(LapId) by SessionName\n| summarize sum(dcount_LapId)",
       "id": "b5ddc4cf-5d02-4193-8015-87273bcafd0e",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 1\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "text": "_carTelemetry\n| where TelemetryPoint in (\"WheelRotationSpeedFrontLeft\", \"WheelRotationSpeedFrontRight\", \"WheelRotationSpeedRearLeft\", \"WheelRotationSpeedRearRight\")\n| where CarId == 1\n| summarize arg_max(StartTime, *) by TelemetryPoint\n| extend\n    TelemetryPoint=case(\n                       TelemetryPoint == \"WheelRotationSpeedFrontLeft\",\n                       \"FrontLeft\",\n                       TelemetryPoint == \"WheelRotationSpeedFrontRight\",\n                       \"FrontRight\",\n                       TelemetryPoint == \"WheelRotationSpeedRearLeft\", \n                       \"RearLeft\",\n                       TelemetryPoint == \"WheelRotationSpeedRearRight\",\n                       \"RearRight\",\n                       \"\"\n                   )\n    ,\n    round(toreal(Data), 2)",
       "id": "848e6738-e854-4be3-a520-24d220a50fc1",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 2\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "text": "_carTelemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 2\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
       "id": "75c459a1-0508-4292-a096-81a2f3baeb71",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "text": "let speed = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Speed'\n    | where CarId == 2\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(speed), 0, speed);\nPlotlyGaugeFl(value=value)",
       "id": "ea579508-5992-42bb-a3bb-6b9601c38598",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "text": "let torque = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Torque'\n    | where CarId == 2\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(torque), 0, torque);\nPlotlyGaugeFl(value=value)",
       "id": "a17c298d-4c14-4631-90e7-11c6c2719f2c",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "text": "let power = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Power'\n    | where CarId == 2\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(power), 0, power);\nPlotlyGaugeFl(value=value)",
       "id": "ad721434-2df5-4872-be22-532125575404",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
@@ -1503,296 +1662,272 @@
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where CarId == 1\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
+      "text": "_carTelemetry\n| where CarId == 1\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
       "id": "d760a167-e71a-4177-b378-8d2fa174fc24",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project SessionName",
+      "text": "_carTelemetry\n| where CarId == 2\n| summarize arg_max(StartTime, *)\n| project SessionName",
       "id": "a3b8a266-5271-46f4-ae7c-2ed3101cd831",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| summarize dcount(SessionName)\n",
+      "text": "_carTelemetry\n| summarize dcount(SessionName)\n",
       "id": "d4136147-a57f-4a7e-a08d-11c5ac93679c",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| summarize dcount(LapId) by SessionName\n| summarize sum(dcount_LapId)",
+      "text": "_carTelemetry\n| summarize dcount(LapId) by SessionName\n| summarize sum(dcount_LapId)",
       "id": "5be901ac-e50d-4952-a454-5f2bf19d9527",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "GetSessionLapData\n| where Rank == 1\n| project SessionName",
+      "text": "GetSessionLapData(_calendar)\n| where Rank == 1\n| project SessionName",
       "id": "c945a871-d18d-4037-95f2-3474fbb3e071",
-      "usedVariables": []
+      "usedVariables": [
+        "_calendar"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| count",
+      "text": "_carTelemetry\n| count",
       "id": "09c56edd-d73e-4c70-83b9-0ef9aff4beff",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let latestSession = car_telemetry | where CarId == 1 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 1\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
       "id": "7448eea9-9dac-4164-8a9a-eb07f3d3cb66",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let latestSession = car_telemetry | where CarId ==1 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 1\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
       "id": "46ea9dbf-2131-4c19-a673-4c5fc4053e46",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where CarId == 3\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
+      "text": "_carTelemetry\n| where CarId == 3\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
       "id": "0bd8062e-61a0-4513-8a77-35e54c1dcd92",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 3\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "text": "_carTelemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 3\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
       "id": "0ebee676-2af6-4ecc-a057-07541ff954c7",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 3\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "text": "let speed = toscalar(_carTelemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 3\n| summarize arg_max(StartTime, *)\n| project Data);\nlet value = iff(isempty(speed),0,speed);\nPlotlyGaugeFl(value=value)",
       "id": "189ab868-6e3d-494a-b811-674386eeecd9",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 3\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "text": "let torque = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Torque'\n    | where CarId == 3\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(torque), 0, torque);\nPlotlyGaugeFl(value=value)",
       "id": "158bb681-d3cd-4f28-9931-e8107124ecf0",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 3\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "text": "let power = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Power'\n    | where CarId == 3\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(power), 0, power);\nPlotlyGaugeFl(value=value)",
       "id": "6e581e6e-d518-4039-ac85-2fcac58c0c6e",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where CarId == 4\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
+      "text": "_carTelemetry\n| where CarId == 4\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
       "id": "eb4396a5-1cb1-43d8-be42-83a9732e7666",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 4\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
+      "text": "_carTelemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 4\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
       "id": "a52f5e62-82be-4ace-8126-c3dbd27834ac",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 4\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
+      "text": "let speed = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Speed'\n    | where CarId == 4\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(speed), 0, speed);\nPlotlyGaugeFl(value=value)",
       "id": "019a75cb-c97a-4150-90c8-bc4ee764c6ef",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 4\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
+      "text": "let torque = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Torque'\n    | where CarId == 4\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(torque), 0, torque);\nPlotlyGaugeFl(value=value)",
       "id": "c2ed294c-52e0-4791-9300-2cbac9384abd",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 4\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
+      "text": "let power = toscalar(\n    _carTelemetry\n    | where TelemetryPoint == 'Power'\n    | where CarId == 4\n    | summarize arg_max(StartTime, *)\n    | project Data);\nlet value = iff(isempty(power), 0, power);\nPlotlyGaugeFl(value=value)",
       "id": "c046038d-3260-4a7c-8566-eb74d3199b65",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "car_telemetry\n| where CarId == 5\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
-      "id": "6d7ded2e-dfcb-4c87-a2df-1119e84f6bde",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 5\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
-      "id": "1a4168d7-b75c-4511-8f02-29a26a698b2a",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 5\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
-      "id": "5f7c7c30-850f-4501-a75d-b78446ad58ba",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 5\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
-      "id": "a7efb077-b64d-4829-8e3e-a6b10ca72480",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 5\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
-      "id": "5367c713-6ce7-467d-91d7-374936e5b16e",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "car_telemetry\n| where CarId == 6\n| summarize arg_max(StartTime, *) by CarId\n| project SessionName",
-      "id": "8542883c-ee63-4dfd-9fec-cdb39c40244f",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "car_telemetry\n| where TelemetryPoint   in (\"WheelRotationSpeedFrontLeft\",\"WheelRotationSpeedFrontRight\",\"WheelRotationSpeedRearLeft\",\"WheelRotationSpeedRearRight\")\n| where CarId == 6\n| summarize arg_max(StartTime,*) by TelemetryPoint\n| extend TelemetryPoint=case(TelemetryPoint==\"WheelRotationSpeedFrontLeft\",\"FrontLeft\",TelemetryPoint==\"WheelRotationSpeedFrontRight\",\"FrontRight\",TelemetryPoint==\"WheelRotationSpeedRearLeft\", \n         \"RearLeft\", TelemetryPoint==\"WheelRotationSpeedRearRight\", \"RearRight\",\"\")\n        ,round(toreal(Data),2)",
-      "id": "bdb63fe5-c6ad-441f-9444-6990b9aa5acc",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "let speed = toscalar(car_telemetry\n| where TelemetryPoint == 'Speed'\n| where CarId == 6\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=speed)",
-      "id": "d31bf166-fc90-4367-9ad3-cc50513fbabe",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "let torque = toscalar(car_telemetry\n| where TelemetryPoint == 'Torque'\n| where CarId == 6\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=torque)",
-      "id": "c918a64d-7bb9-4ddb-bc80-f4b1202ebb8f",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "let power = toscalar(car_telemetry\n| where TelemetryPoint == 'Power'\n| where CarId == 6\n| summarize arg_max(StartTime, *)\n| project Data);\nplotly_gauge_fl(value=power)",
-      "id": "0fd8192a-655c-4d00-a95c-23734cd994fa",
-      "usedVariables": []
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
-      },
-      "text": "let latestSession = car_telemetry | where CarId == 2 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 2\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
       "id": "9952e720-4e35-45d8-a843-687ff36bcb7e",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let latestSession = car_telemetry | where CarId ==2 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 2\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
       "id": "3b247eae-e04f-4db2-bafe-77da44d0cdc0",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let latestSession = car_telemetry | where CarId == 3 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 3\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
       "id": "9acd042d-18d7-4a7f-98d5-6ecfc1f9f354",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let latestSession = car_telemetry | where CarId ==3 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 3\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
       "id": "d1a657a8-9536-4da2-8a2d-b69aefbc4554",
-      "usedVariables": []
+      "usedVariables": [
+        "_carTelemetry"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let latestSession = car_telemetry | where CarId == 4 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 4\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed', 'Brake')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by LapId, TelemetryPoint\n| order by LapId asc",
       "id": "071c5794-2631-454b-bc87-7474cbe981e1",
+      "usedVariables": [
+        "_carTelemetry"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 4\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
+      "id": "add17bc1-e25d-4d14-9f98-34764d79d745",
+      "usedVariables": [
+        "_carTelemetry"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "// Please enter your KQL query (Example):\n// <table name>\n// | take 100\n\nprint  strcat(\" rides🏆\")\n\n\n",
+      "id": "44cb1e6e-ade7-4d7b-96c9-d84ba4ab3119",
       "usedVariables": []
     },
     {
@@ -1800,8 +1935,105 @@
         "kind": "inline",
         "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
       },
-      "text": "let latestSession = car_telemetry | where CarId ==4 |summarize arg_max(StartTime, *) by CarId | project SessionId;\ncar_telemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series value = avg(toreal(Data)) on StartTime step 1s by CarId, LapId\n| order by CarId asc, LapId asc\n| render timechart",
-      "id": "add17bc1-e25d-4d14-9f98-34764d79d745",
+      "text": "GenerateLeaderboard\n| project SessionName, Rank\n| project Rank= iff(Rank == 1, strcat(\"![](https://tse4.mm.bing.net/th/id/OIP.aiRopDhC86UaHzklAkCqNAHaFn?rs=1&pid=ImgDetMain&o=7&rm=3)\",\" - \",Rank),tostring(Rank)), SessionName\n| project Text=tostring(strcat(\" - \",Rank,\" - \", SessionName))\n| summarize Text=strcat_array(make_list(Text),```\n\n```)",
+      "id": "76a375e0-6e86-46e3-b3b4-5d5d3dc5a3b8",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 1\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series Speed = avg(toreal(Data) * 3.6) on StartTime step 1s by LapId\n| order by LapId asc\n| render timechart",
+      "id": "ae171f4b-44b2-42d4-9484-d6bc8560e5f5",
+      "usedVariables": [
+        "_carTelemetry"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 2\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series Speed = avg(toreal(Data) * 3.6) on StartTime step 1s by LapId\n| order by LapId asc\n| render timechart",
+      "id": "157edb19-5c3a-4a87-8e8f-bf72dd7d752b",
+      "usedVariables": [
+        "_carTelemetry"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 3\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series Speed = avg(toreal(Data) * 3.6) on StartTime step 1s by LapId\n| order by LapId asc\n| render timechart",
+      "id": "16cabaca-941e-4089-b110-a81fecb6539d",
+      "usedVariables": [
+        "_carTelemetry"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "let latestSession = _carTelemetry\n    | where CarId == 4\n    | summarize arg_max(StartTime, *) by CarId\n    | project SessionId;\n_carTelemetry\n| where TelemetryPoint in ('Speed')\n| where SessionId in (latestSession)\n| make-series Speed = avg(toreal(Data) * 3.6) on StartTime step 1s by LapId\n| order by LapId asc\n| render timechart",
+      "id": "91c55afd-f5c4-4622-89d3-81263826d385",
+      "usedVariables": [
+        "_carTelemetry"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "GetSessionLapData(_calendar)\n| where Rank==1\n| project LapTime",
+      "id": "7cc96056-44e2-4db4-894b-2223d0612d76",
+      "usedVariables": [
+        "_calendar"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "_carTelemetry\n| extend ingesttime = ingestion_time()\n| where TelemetryPoint == \"Speed\"\n| extend latency = datetime_diff('millisecond',ingesttime, StartTime)\n| take 1000\n//| summarize displaylatency = percentile(latency, 10)\n| summarize displaylatency=avg(latency)\n| project strcat(displaylatency,\" ms\")",
+      "id": "f999f8d4-e302-4040-aec8-3140148eef99",
+      "usedVariables": [
+        "_carTelemetry"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "_carTelemetry\n| where TelemetryPoint in (\"PositionX\",\"PositionY\")\n| project LapId, Data=toreal(Data), SessionName, SessionId, EndTime,CarId,TelemetryPoint\n| summarize arg_max(EndTime,*) by CarId, TelemetryPoint",
+      "id": "e6b84de1-530d-4997-b2e8-69f5a614b43d",
+      "usedVariables": [
+        "_carTelemetry"
+      ]
+    },
+    {
+      "id": "8409a27e-2df2-449b-8e90-73dd589f2092",
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "CarTelemetry\n| where StartTime between (startofday(_calendar) .. endofday(_calendar))",
+      "usedVariables": [
+        "_calendar"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "0cdc8d19-882a-46cc-af6a-4371abbe7663"
+      },
+      "text": "Calendar(90d,1d)\r\n| order by Date",
+      "id": "abd7cbf7-6b6e-4ffe-89ee-3a312adf6873",
       "usedVariables": []
     }
   ]

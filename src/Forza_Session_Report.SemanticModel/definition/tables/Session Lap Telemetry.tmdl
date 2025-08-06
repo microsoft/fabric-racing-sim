@@ -127,9 +127,10 @@ table 'Session Lap Telemetry'
 				let
 				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, null, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
 				    KQLDB = Source{[Name=KQLDB]}[Data],
-				    GetPivotedTelemetryData1 = KQLDB{[Name="GetPivotedTelemetryData"]}[Data]
+				    fGetPivotedTelemetryData = KQLDB{[Name="GetPivotedTelemetryData"]}[Data],
+				    GetPivotedTelemetryData = fGetPivotedTelemetryData(null)
 				in
-				    GetPivotedTelemetryData1
+				    GetPivotedTelemetryData
 
 	annotation PBI_ResultType = Table
 
