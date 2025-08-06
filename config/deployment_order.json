@@ -65,7 +65,7 @@
         "datasource": "Forza_Session_Report.SemanticModel"
     },
     {
-        "name": "Generate Config.Notebook",
+        "name": "RacingSim Generate Config.Notebook",
         "id": "5ddf2e6a-2a2e-a550-42a8-cef88f6bb773"
     }
 ]
