@@ -102,20 +102,6 @@ def fab_get_id(name):
     id = run_fab_command(f"get /{workspace_name}.Workspace/{name} -q id" , capture_output = True, silently_continue= True)
     return(id)
 
-def fab_get_item(name):
-    item = run_fab_command(f"get /{workspace_name}.Workspace/{name}" , capture_output = True, silently_continue= True)
-    return(item)
-
-def fab_list_item():
-    items = run_fab_command(f"ls /{workspace_name}.Workspace" , capture_output = True, silently_continue= True)
-    return(items)
-
-def fab_get_display_name(name):
-    display_name = run_fab_command(f"get /{workspace_name}.Workspace/{name} -q displayName" , capture_output = True, silently_continue= True)
-    return(display_name)
-
-
-
 # METADATA ********************
 
 # META {
