@@ -1,7 +1,7 @@
 {
   "sources": [
     {
-      "id": "ce40729f-ef00-4e54-b8a9-ac55d1292ec5",
+      "id": "78229456-bd07-4f93-8ae7-2669d0e5a060",
       "name": "forza-telemetry-client",
       "type": "CustomEndpoint",
       "properties": {}
@@ -9,7 +9,7 @@
   ],
   "destinations": [
     {
-      "id": "13e3e34c-bbba-451c-8686-190404ac0dcd",
+      "id": "81e5bc5a-0b8f-4347-a39a-716624882519",
       "name": "Eventhouse",
       "type": "Eventhouse",
       "properties": {
@@ -17,27 +17,19 @@
         "workspaceId": "00000000-0000-0000-0000-000000000000",
         "itemId": "c0d8a17c-46b7-8722-48ee-e7e2a912e896",
         "tableName": "RawTelemetry",
-        "connectionName": "RawTelemetry",
-        "mappingRuleName": "rawtelemetry_mapping"
+        "connectionName": "RacingSim_RacingSim-RawTelemetry",
+        "mappingRuleName": "RawTelemetry_mapping"
       },
       "inputNodes": [
         {
           "name": "RacingSim-stream"
-        }
-      ],
-      "inputSchemas": [
-        {
-          "name": "RacingSim-stream",
-          "schema": {
-            "columns": []
-          }
         }
       ]
     }
   ],
   "streams": [
     {
-      "id": "57920350-c049-4cd9-b6b4-53e089e030f4",
+      "id": "1b462ef6-6b4b-48b3-82b2-815373f7f6b0",
       "name": "RacingSim-stream",
       "type": "DefaultStream",
       "properties": {},
@@ -49,5 +41,5 @@
     }
   ],
   "operators": [],
-  "compatibilityLevel": "1.0"
+  "compatibilityLevel": "1.1"
 }

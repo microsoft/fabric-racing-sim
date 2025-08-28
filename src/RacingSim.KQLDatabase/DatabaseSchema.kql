@@ -2,21 +2,35 @@
 // Use management commands in this script to configure your database items, such as tables, functions, materialized views, and more.
 
 
-.create-merge table rawtelemetry (ChannelId:string, CarId:string, SessionId:guid, SessionName:string, Email:string, Telephone:long, LapId:string, SampleCount:int, Frequency:int, Timespan:dynamic, Data:dynamic) with (folder = "Bronze Layer") 
-.create-or-alter table rawtelemetry ingestion json mapping 'rawtelemetry_mapping'
-```
-[{"Properties":{"Path":"$['ChannelId']"},"column":"ChannelId","datatype":""},{"Properties":{"Path":"$['CarId']"},"column":"CarId","datatype":""},{"Properties":{"Path":"$['SessionId']"},"column":"SessionId","datatype":""},{"Properties":{"Path":"$['SessionName']"},"column":"SessionName","datatype":""},{"Properties":{"Path":"$['Email']"},"column":"Email","datatype":""},{"Properties":{"Path":"$['Telephone']"},"column":"Telephone","datatype":""},{"Properties":{"Path":"$['LapId']"},"column":"LapId","datatype":""},{"Properties":{"Path":"$['SampleCount']"},"column":"SampleCount","datatype":""},{"Properties":{"Path":"$['Frequency']"},"column":"Frequency","datatype":""},{"Properties":{"Path":"$['Timespan']"},"column":"Timespan","datatype":""},{"Properties":{"Path":"$['Data']"},"column":"Data","datatype":""}]
-```
-.create-merge table car_telemetry (TelemetryPoint:string, CarId:string, SessionId:guid, LapId:string, StartTime:datetime, EndTime:datetime, Data:dynamic, SessionName:string, Email:string, Telephone:long) with (folder = "Silver Layer") 
-.create-merge table PlotlyTemplate (name:string, plotly:string) 
-.create-or-alter function with (folder = "Bronze to Silver Transformation Functions", skipvalidation = "true") GetCarTelemetry() {
-rawtelemetry
-| extend StartTime= unixtime_milliseconds_todatetime(tolong(Timespan.StartTS)) , EndTime = unixtime_milliseconds_todatetime(tolong(Timespan.EndTS))
-| mv-expand Data
-| project TelemetryPoint = ChannelId , CarId, SessionId, LapId, StartTime, EndTime, Data, SessionName, Email, Telephone
+.create-merge table RawTelemetry (ChannelId:string, CarId:string, SessionId:string, SessionName:string, Email:string, Telephone:long, LapId:string, SampleCount:int, Frequency:int, Timespan:dynamic, Data:dynamic, EventProcessedUtcTime:datetime, EventEnqueuedUtcTime:datetime) with (folder = "Bronze Layer") 
+.create-merge table CarTelemetry (TelemetryPoint:string, CarId:string, SessionId:guid, LapId:string, StartTime:datetime, EndTime:datetime, Data:real, SessionName:string, Email:string, Telephone:long, IngestionTime:datetime, EventProcessedUtcTime:datetime, EventEnqueuedUtcTime:datetime) with (folder = "Silver Layer") 
+.create-or-alter function with (folder = "Bronze to Silver Function", skipvalidation = "true") GetCarTelemetry() {
+    RawTelemetry
+    | extend
+        StartTime= unixtime_milliseconds_todatetime(tolong(Timespan.StartTS)),
+        EndTime = unixtime_milliseconds_todatetime(tolong(Timespan.EndTS)),
+        IngestionTime=now()
+    | mv-expand Data
+    | project
+        TelemetryPoint = ChannelId,
+        CarId,
+        SessionId=toguid(SessionId),
+        LapId,
+        StartTime,
+        EndTime,
+        Data=toreal(Data),
+        SessionName,
+        Email,
+        Telephone,
+        IngestionTime,
+        EventProcessedUtcTime,
+        EventEnqueuedUtcTime
 }
-.create-or-alter function with (skipvalidation = "true") GetSessions() {
-     car_telemetry
+.create-or-alter function with (skipvalidation = "true") GetSessions(FromDate:datetime=datetime(null), ToDate:datetime=datetime(null)) {
+     CarTelemetry
+    | where isempty(FromDate)
+        or isempty(ToDate)
+        or StartTime between (startofday(FromDate) .. endofday(ToDate))
     | summarize
         Date=format_datetime(min(StartTime), 'yyyy-MM-dd'),
         StartTime=format_datetime(min(StartTime), 'H:mm:ss'),
@@ -24,11 +38,12 @@ rawtelemetry
         by SessionId, SessionName, CarId, Email, Telephone
     | filter SessionName != "Anonymous"
  }
-.create-or-alter function with (skipvalidation = "true") GetSessionLapData() {
+.create-or-alter function with (skipvalidation = "true") GetSessionLapData(SelectedDate:datetime=datetime(null)) {
      let session_lap_summary =
-        car_telemetry
+        CarTelemetry
         | where TelemetryPoint == "DistanceTraveled"
         | where (todouble(Data)) > 0
+        | where isempty(SelectedDate) or StartTime between (startofday(SelectedDate) .. endofday(SelectedDate))
         | project
             sessionLapKey = strcat(SessionId, "-", LapId),
             SessionId,
@@ -40,9 +55,10 @@ rawtelemetry
         | extend LapDistanceTraveled = MaxDistance - MinDistance
         | extend InvalidLap = iif((LapDistanceTraveled < 5000) or (LapDistanceTraveled >= 17670), true, false);
      let session_laptime =
-        car_telemetry
+        CarTelemetry
         | where TelemetryPoint == "CurrentLapTimer"
         | where todouble(Data) > 0
+        | where isempty(SelectedDate) or StartTime between (startofday(SelectedDate) .. endofday(SelectedDate))
         | project
             sessionLapKey = strcat(SessionId, "-", LapId),
             LapTime = todouble(Data) * 1s,
@@ -65,18 +81,21 @@ rawtelemetry
     | filter InvalidLap == false
     | extend Rank=row_rank_min(LapTime)
  }
-.create-or-alter function with (skipvalidation = "true") GetPivotedTelemetryData() {    
-    car_telemetry
+.create-or-alter function with (skipvalidation = "true") GetPivotedTelemetryData(SelectedDate:datetime=datetime(null)) {
+    CarTelemetry
     | where (TelemetryPoint == "Gear" and Data <> 11) or TelemetryPoint in ("Steer", "DistanceTraveled", "Brake", "Accel", "Speed", "PositionX", "PositionZ")
+    | where isempty(SelectedDate) or StartTime between (startofday(SelectedDate) .. endofday(SelectedDate))
     | order by StartTime asc
-    | project sessionLapKey = strcat(SessionId, "-", LapId), EndTime, TelemetryPoint, point=todouble(Data)
+    | project sessionLapKey = strcat(SessionId, "-", LapId), Timestamp=EndTime, TelemetryPoint, point=Data, LapId, CarId
+    | summarize point=max(point) by sessionLapKey, TelemetryPoint, LapId, CarId, bin(Timestamp,1s)
     | evaluate pivot(TelemetryPoint, avg(point));
 }
-.create-or-alter function with (skipvalidation = "true") GenerateLeaderboard() {
+.create-or-alter function with (skipvalidation = "true") GenerateLeaderboard(SelectedDate:datetime=datetime(null)) {
      let session_lap_summary =
-        car_telemetry
+        CarTelemetry
         | where TelemetryPoint == "DistanceTraveled"
         | where todouble(Data) > 0
+        | where isempty(SelectedDate) or StartTime between (startofday(SelectedDate) .. endofday(SelectedDate))
         | project
             sessionLapKey = strcat(SessionId, "-", LapId),
             SessionId,
@@ -89,15 +108,16 @@ rawtelemetry
         | extend LapDistanceTraveled = MaxDistance - MinDistance
         | extend InvalidLap = iif((LapDistanceTraveled < 5000) or (LapDistanceTraveled >= 17670), true, false);
      let session_laptime =
-        car_telemetry
+        CarTelemetry
         | where TelemetryPoint == "CurrentLapTimer"
         | where todouble(Data) > 0
+        | where isempty(SelectedDate) or StartTime between (startofday(SelectedDate) .. endofday(SelectedDate))
         | project
             sessionLapKey = strcat(SessionId, "-", LapId),
             timer = todouble(Data) * 1s,
             StartTime,
             EndTime
-        | summarize StartTime=min(StartTime), EndTime=max(StartTime), LapTime = max(timer) by sessionLapKey;
+        | summarize StartTime=min(StartTime), EndTime=max(EndTime), LapTime = max(timer) by sessionLapKey;
      session_lap_summary
     | join kind=inner session_laptime on sessionLapKey
     | project
@@ -115,25 +135,12 @@ rawtelemetry
     | filter InvalidLap == false
     | extend Rank=row_rank_min(LapTime)
  }
-.create-or-alter function with (folder = "Packages\\Plotly", docstring = "Render gauge chart using plotly template", skipvalidation = "true") plotly_gauge_fl(value:real, max_range:real=real(null), mode:string="gauge+number", chart_title:string="", font_color:string="black", bar_color:string="green", bar_bg_color:string="lightgreen", tick_color:string="darkblue", tick_width:int=1) {
-    let gauge_chart = toscalar(PlotlyTemplate | where name == "gauge" | project plotly);
-    print plotly = gauge_chart
-    | extend plotly=replace_string(plotly, '$VALUE$', tostring(value))
-    | extend plotly=replace_string(plotly, '$MAX_RANGE$', iff(isnull(max_range), 'null', tostring(max_range)))
-    | extend plotly=replace_string(plotly, '$MODE$', mode)
-    | extend plotly=replace_string(plotly, '$TITLE$', chart_title)
-    | extend plotly=replace_string(plotly, '$FONT_COLOR$', font_color)
-    | extend plotly=replace_string(plotly, '$BAR_COLOR$', bar_color)
-    | extend plotly=replace_string(plotly, '$BAR_BG_COLOR$', bar_bg_color)
-    | extend plotly=replace_string(plotly, '$TICK_COLOR$', tick_color)
-    | extend plotly=replace_string(plotly, '$TICK_WIDTH$', tostring(tick_width))
-    | project plotly
-}
-.create-or-alter function with (skipvalidation = "true") GetSessionLapData_AllDays() {
+.create-or-alter function with (skipvalidation = "true") GetSessionLapDataAllDays(FromDate:datetime=datetime(null), ToDate:datetime=datetime(null)) {
       let session_lap_summary =
-        car_telemetry
+        CarTelemetry
         | where TelemetryPoint == "DistanceTraveled"
         | where (todouble(Data)) > 0
+        | where isempty(FromDate) or isempty(ToDate) or StartTime between (startofday(FromDate) .. endofday(ToDate))
         | project
             sessionLapKey = strcat(SessionId, "-", LapId),
             SessionId,
@@ -145,9 +152,10 @@ rawtelemetry
         | extend LapDistanceTraveled = MaxDistance - MinDistance
         | extend InvalidLap = iif((LapDistanceTraveled < 5000) or (LapDistanceTraveled >= 11780), true, false);
       let session_laptime =
-        car_telemetry
+        CarTelemetry
         | where TelemetryPoint == "CurrentLapTimer"
         | where todouble(Data) > 0
+        | where isempty(FromDate) or isempty(ToDate) or StartTime between (startofday(FromDate) .. endofday(ToDate))
         | project
             sessionLapKey = strcat(SessionId, "-", LapId),
             CarId,
@@ -174,5 +182,50 @@ rawtelemetry
     | extend Rank=row_rank_min(LapTime)
     | extend OverallRank=row_rank_min(LapTime)
   }
-.create-or-alter materialized-view with (Folder = "Gold layer materialized views")  ongoingRaceSession on table car_telemetry { car_telemetry | summarize arg_max(StartTime, *) by CarId }
-.alter table car_telemetry policy update "[{\"IsEnabled\":true,\"Source\":\"rawtelemetry\",\"Query\":\"GetCarTelemetry\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
+.create-or-alter function with (folder = "Plotly", skipvalidation = "true") PlotlyTemplate() {
+     datatable (name: string, plotly: string)
+    [
+        "anomaly", '{"data":[{"line":{"color":"blue","width":2},"marker":{"color":"black"},"mode":"lines","name":"$SERIES_NAME$","x":$TIME_STAMPS$,"y":$SERIES_VALS$,"type":"scatter"},{"line":{"color":"green","dash":"dashdot","shape":"spline"},"mode":"lines","name":"$SERIES_NAME$ baseline","opacity":0.7,"x":$TIME_STAMPS$,"y":$BASELINE_VALS$,"type":"scatter"},{"marker":{"color":"red","opacity":0.7,"size":$HIGH_ANOMALIES_MARKER_SIZE$,"symbol":"triangle-up-dot"},"mode":"markers","name":"$SERIES_NAME$ high anomalies","x":$TIME_STAMPS_HIGH_ANOMALIES$,"y":$HIGH_ANOMALIES_VALS$,"type":"scatter"},{"marker":{"color":"red","opacity":0.7,"size":$LOW_ANOMALIES_MARKER_SIZE$,"symbol":"triangle-down-dot"},"mode":"markers","name":"$SERIES_NAME$ low anomalies","x":$TIME_STAMPS_LOW_ANOMALIES$,"y":$LOW_ANOMALIES_VALS$,"type":"scatter"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":28},"text":"$TITLE$"},"xaxis":{"title":{"text":"Date"}},"yaxis":{"title":{"text":"$Y_NAME$"}}}}',
+        "scatter3d", '{"data":[{"hovertemplate":"Class=$CLASS1$<br>$X_NAME$=%{x}<br>$Y_NAME$=%{y}<br>$Z_NAME$=%{z}<extra></extra>","legendgroup":"$CLASS1$","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"$CLASS1$","scene":"scene","showlegend":true,"x":$CLASS1_X$,"y":$CLASS1_Y$,"z":$CLASS1_Z$,"type":"scatter3d"},{"hovertemplate":"Class=$CLASS2$<br>$X_NAME$=%{x}<br>$Y_NAME$=%{y}<br>$Z_NAME$=%{z}<extra></extra>","legendgroup":"$CLASS2$","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"$CLASS2$","scene":"scene","showlegend":true,"x":$CLASS2_X$,"y":$CLASS2_Y$,"z":$CLASS2_Z$,"type":"scatter3d"},{"hovertemplate":"Class=$CLASS3$<br>$X_NAME$=%{x}<br>$Y_NAME$=%{y}<br>$Z_NAME$=%{z}<extra></extra>","legendgroup":"$CLASS3$","marker":{"color":"#00cc96","symbol":"circle"},"mode":"markers","name":"$CLASS3$","scene":"scene","showlegend":true,"x":$CLASS3_X$,"y":$CLASS3_Y$,"z":$CLASS3_Z$,"type":"scatter3d"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"scene":{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"xaxis":{"title":{"text":"$X_NAME$"}},"yaxis":{"title":{"text":"$Y_NAME$"}},"zaxis":{"title":{"text":"$Z_NAME$"}}},"legend":{"title":{"text":"Class"},"tracegroupgap":0},"margin":{"t":60},"title":{"text":"$TITLE$"}}}',
+        "gauge", '{"data":[{"gauge":{"axis":{"range":[null,$MAX_RANGE$],"tickcolor":"$TICK_COLOR$","tickwidth":$TICK_WIDTH$},"bar":{"color":"$BAR_COLOR$"},"bgcolor":"$BAR_BG_COLOR$"},"mode":"$MODE$","title":{"text":"$TITLE$"},"value":$VALUE$,"type":"indicator"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"font":{"color":"$FONT_COLOR$"}}}'
+    ]
+ }
+.create-or-alter function with (folder = "Plotly", skipvalidation = "true") PlotlyGaugeFl(value:real, max_range:real=real(null), mode:string="gauge+number", chart_title:string="", font_color:string="black", bar_color:string="green", bar_bg_color:string="lightgreen", tick_color:string="darkblue", tick_width:int=1) {
+      let gauge_chart = toscalar(PlotlyTemplate | where name == "gauge" | project plotly);
+      print plotly = gauge_chart
+    | extend plotly=replace_string(plotly, '$VALUE$', tostring(value))
+    | extend plotly=replace_string(plotly, '$MAX_RANGE$', iff(isnull(max_range), 'null', tostring(max_range)))
+    | extend plotly=replace_string(plotly, '$MODE$', mode)
+    | extend plotly=replace_string(plotly, '$TITLE$', chart_title)
+    | extend plotly=replace_string(plotly, '$FONT_COLOR$', font_color)
+    | extend plotly=replace_string(plotly, '$BAR_COLOR$', bar_color)
+    | extend plotly=replace_string(plotly, '$BAR_BG_COLOR$', bar_bg_color)
+    | extend plotly=replace_string(plotly, '$TICK_COLOR$', tick_color)
+    | extend plotly=replace_string(plotly, '$TICK_WIDTH$', tostring(tick_width))
+    | project plotly
+  }
+.create-or-alter function with (folder = "Calendar", skipvalidation = "true") Calendar(DaysBack:timespan=time(365.00:00:00), Precision:timespan=time(1.00:00:00)) {
+     let _startDate = startofday(ago(DaysBack));
+     let _endDate = startofday(now());
+     range Date from _startDate to _endDate step Precision
+    | extend
+        ["Year"]=getyear(["Date"]),
+        ["Month"]=getmonth(["Date"]),
+        ["Week of Year"]=week_of_year(["Date"]),
+        ["Week of Month"]=(dayofmonth(["Date"]) / 7) + 1,
+        ["Day"]=datepart('day', ["Date"])
+ }
+.create-or-alter function with (skipvalidation = "true") GetPivotedPositionData(SelectedCarId:string="") {
+    CarTelemetry
+    | where TelemetryPoint in ("PositionX", "PositionZ")
+    | where isempty(SelectedCarId) or CarId == SelectedCarId
+    | summarize arg_max(EndTime,*) by CarId, TelemetryPoint
+    | project sessionLapKey = strcat(SessionId, "-", LapId), Timestamp=EndTime, TelemetryPoint, point=Data, LapId, CarId
+    | summarize point=max(point) by sessionLapKey, TelemetryPoint, LapId, CarId, bin(Timestamp,1s)
+    | evaluate pivot(TelemetryPoint, avg(point));
+}
+.create-or-alter materialized-view  OngoingRaceSession on table CarTelemetry { CarTelemetry
+    | summarize arg_max(StartTime, *) by CarId }
+.alter table RawTelemetry policy streamingingestion "{\"IsEnabled\":true,\"HintAllocatedRate\":null,\"NumberOfRowStores\":null,\"SealIntervalLimit\":null,\"SealThresholdBytes\":null,\"UsageTags\":[],\"IsMaintenanceActive\":false}"
+.alter table CarTelemetry policy streamingingestion "{\"IsEnabled\":true,\"HintAllocatedRate\":null,\"NumberOfRowStores\":null,\"SealIntervalLimit\":null,\"SealThresholdBytes\":null,\"UsageTags\":[],\"IsMaintenanceActive\":false}"
+.alter table CarTelemetry policy update "[{\"IsEnabled\":true,\"Source\":\"RawTelemetry\",\"Query\":\"GetCarTelemetry\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
