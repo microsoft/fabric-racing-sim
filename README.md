@@ -71,13 +71,13 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 
 ### Part 1 - Set up Fabric
 
-1. [Create a workspace in Microsoft Fabric](https://learn.microsoft.com/en-us/fabric/fundamentals/create-workspaces). For this project, do not use the default "My Workspace". Name the workspace `Racing Sim`. 
+1. [Create a workspace in Microsoft Fabric](https://learn.microsoft.com/fabric/fundamentals/create-workspaces). For this project, do not use the default "My Workspace". Name the workspace `Racing Sim`.
 
-2. [Assign a capacity to your workspace](https://learn.microsoft.com/en-us/fabric/fundamentals/workspace-license-mode). You can use a [trial capacity](https://learn.microsoft.com/en-us/fabric/fundamentals/fabric-trial).
+2. [Assign a capacity to your workspace](https://learn.microsoft.com/fabric/fundamentals/workspace-license-mode). You can use a [trial capacity](https://learn.microsoft.com/fabric/fundamentals/fabric-trial).
 
 3. Download the [Racing Sim Setup](https://github.com/microsoft/fabric-racing-sim/blob/main/setup/Racing%20Sim%20Setup.ipynb) notebook from this repo.
 
-4. [Upload this notebook](https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook#import-existing-notebooks) into the workspace you created in a previous step. Run all the steps in the notebook.
+4. [Upload this notebook](https://learn.microsoft.com/fabric/data-engineering/how-to-use-notebook#import-existing-notebooks) into the workspace you created in a previous step. Run all the steps in the notebook.
 
 5. In your workspace home page, Browse to the notebook entitled *RacingSim Generate Config*.
 
@@ -87,7 +87,7 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 
 1. From the [Forza Telemetry Client repo](https://github.com/toolboc/forza-telemetry-client/?tab=readme-ov-file#usage), under the **Usage** section, select the link to download and extract the latest release. 
 
-2. Open the extracted folder, and open the subfolder named *config*. 
+2. Open the extracted folder, and open the subfolder named *config*.
 
 3. Replace the *appsettings.json* file with the contents of the *appsettings.json* file you downloaded from your Fabric workspace.
 
