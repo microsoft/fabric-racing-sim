@@ -13,7 +13,7 @@
   <a href="#-key-features">Key Features</a> •
   <a href="#-technology-stack">Technology Stack</a> •
   <a href="#-prerequisites">Prerequisites</a> •
-  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-setup-instructions">Setup Instructions</a> •
   <a href="#-sample-metrics-captured">Sample Metrics Captured</a> •
   <a href="#-contributing">Contributing</a> •
   <a href="#-license">License</a>
@@ -21,7 +21,7 @@
 
 ## 🚀 Overview
 
-**Fabric Racing Simulator** is a showcase project that combines real-time telemetry from **Forza Motorsport** with the advanced analytics capabilities of **Microsoft Fabric**. This platform demonstrates how in-game racing data can be captured, processed, and visualized instantly using Microsoft Fabric Real-time Intelligence (RTI), turning your gameplay into actionable racing insights.
+**Fabric Racing Simulator** is a showcase project that combines real-time telemetry from **Forza Motorsport** with the advanced analytics capabilities of **Microsoft Fabric**. This platform demonstrates how in-game racing data can be captured, processed, and visualized instantly using Microsoft Fabric Real-time Intelligence, turning your gameplay into actionable racing insights.
 
 Imagine playing your favorite racing game while simultaneously capturing, processing, and visualizing every aspect of your performance in real-time. From telemetry data to lap times, from tire wear to Handbrakes – everything is streamed, stored, and displayed on stunning real-time dashboards.
 
@@ -44,7 +44,7 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 - **Stream processing**: Real-time data transformation and aggregation
 
 ### 📊 Microsoft Fabric Integration
-- **Fabric RTI**: Seamless integration with Microsoft Fabric's Real-time Intelligence
+- **Fabric Real-Time Intelligence**: Seamless integration with Microsoft Fabric's Real-time Intelligence
 - **Auto-scaling**: Handles data spikes during intense racing moments
 - **Long-term Storage**: Historical data retention for trend analysis and improvement tracking
 
@@ -98,7 +98,6 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 2. Go to **Gameplay & HUD**
 3. Under UDP Race Telemetery, [configure the following settings](https://www.youtube.com/watch?v=ThrJOwOPMhI):
 
-    
     | Name                   | Setting                                                                                    |
     | ---------------------- | ------------------------------------------------------------------------------------------ |
     | Data Out               | On                                                                                         |
@@ -108,13 +107,22 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 
 4. Save and apply your changes.
 
-5. Set up the game type.
+5. Select the car for your game:
+
+6. Set up the game using the following settings:
+
+    | Name      | Setting     |
+    | --------- | ----------- |
+    | Game type | Circuit     |
+    |     ??    | Short       |
+    |     ??    | Silverstone |
+    |     ??    | Grand prix  |
 
 ### Part 4 - Ready, set, play!
 
 1. Run the Forza Telemetry Client application file from the extracted folder.
 
-2. Start your game. You should immediately see telemetry data being captured and sent to your Fabric workspace both on the Telemetry Client and within the dashboards in your workspace. 
+2. Start your game. You should immediately see telemetry data being captured and sent to your Fabric workspace both on the Telemetry Client and within the dashboards in your Fabric Real-Time Intelligence workspace. 
 
 ## 📊 Sample Metrics Captured
 
