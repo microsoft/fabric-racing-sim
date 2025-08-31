@@ -67,6 +67,8 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 - ✅ **Microsoft Entra Tenant**
 - ✅ **Forza Motorsport** on Xbox
 
+> **Note**: Forza is a game franchise. Please ensure you're using [Fora Motorsport](https://www.xbox.com/games/forza-motorsport).
+
 ## 🚦 Setup Instructions
 
 ### Part 1 - Set up Fabric
@@ -107,16 +109,24 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 
 4. Save and apply your changes.
 
-5. Select the car for your game:
+5. Select the car for your game: Porsche 2021 911 GT3 (Rent it)
 
-6. Set up the game using the following settings:
+6. Set up the game in [**advanced event setup**](https://youtu.be/ooOQhfepL0c) using the following settings:
 
-    | Name      | Setting     |
-    | --------- | ----------- |
-    | Game type | Circuit     |
-    |     ??    | Short       |
-    |     ??    | Silverstone |
-    |     ??    | Grand prix  |
+> **Note**: As long as UDP telemetry is correctly setup, you could _technically_ choose any setting you want. However, some features - like the racers map on the Power BI report - requires this settings. 
+
+| Name                | Setting                             |
+|---------------------|-------------------------------------|
+| Race Type           | Free Play                           |
+| Car                 | Porsche 2021 911 GT3 (Rent it)      |
+| Game Type           | Circuit Race                        |
+| Race Length         | Short                               |
+| Track               | Silverstone Racing Circuit          |
+| Track Layout        | Grand Prix Circuit                  |
+| Number of Laps      | 2                                   |
+| Weather             | Clear                               |
+| Number of Drivatars | 0                                   |
+
 
 ### Part 4 - Ready, set, play!
 
