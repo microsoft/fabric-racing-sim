@@ -71,6 +71,13 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 
 ## 🚦 Setup Instructions
 
+### Quick setup summary
+
+- Part 1 — Fabric: create a Fabric workspace, assign capacity, then upload & run the `Racing Sim Setup` notebook to generate `appsettings.json`.
+- Part 2 — Telemetry Client: download the Forza Telemetry Client and replace its `appsettings.json` with the file exported from your Fabric workspace.
+- Part 3 — Game: enable UDP telemetry in Forza, set the client IP and port (5300) and use the "Car Dash" packet format.
+- Part 4 — Run: start the Telemetry Client and then start Forza; telemetry should stream to your Fabric workspace and dashboards.
+
 ### Part 1 - Set up Fabric
 
 1. [Create a workspace in Microsoft Fabric](https://learn.microsoft.com/fabric/fundamentals/create-workspaces). For this project, do not use the default "My Workspace". Name the workspace `Racing Sim`.
@@ -92,6 +99,9 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 2. Open the extracted folder, and open the subfolder named *config*.
 
 3. Replace the *appsettings.json* file with the contents of the *appsettings.json* file you downloaded from your Fabric workspace.
+
+> For the Telemetry client to receive UDP data from network - if using another PC or an XBox - you may need to open UDP on Windows firewall. You can run this command in your terminal to open it
+> `netsh advfirewall firewall add rule name="Forza Telemetry UDP 5300" dir=in action=allow protocol=UDP localport=5300`
 
 ### Part 3 - Configure your game settings
 
