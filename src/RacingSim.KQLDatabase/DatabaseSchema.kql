@@ -227,7 +227,7 @@
     | summarize arg_max(EndTime,*) by CarId, TelemetryPoint
     | project sessionLapKey = strcat(SessionId, "-", LapId), Timestamp=EndTime, TelemetryPoint, point=Data, LapId, CarId
     | summarize point=max(point) by sessionLapKey, TelemetryPoint, LapId, CarId, bin(Timestamp,1s)
-    | evaluate pivot(TelemetryPoint, avg(point));
+    | evaluate pivot(TelemetryPoint, avg(point)): (sessionLapKey:string, LapId:string, CarId:string, Timestamp:datetime, PositionX:real,PositionZ:real);
 }
 .create-or-alter materialized-view  OngoingRaceSession on table CarTelemetry { CarTelemetry
     | summarize arg_max(StartTime, *) by CarId }
