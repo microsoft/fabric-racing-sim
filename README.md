@@ -128,7 +128,7 @@ Imagine playing your favorite racing game while simultaneously capturing, proces
 | Name                | Setting                             |
 |---------------------|-------------------------------------|
 | Race Type           | Free Play                           |
-| Car                 | Porsche 2021 911 GT3 (Rent it)      |
+| Car                 | Porsche 2023 911 GT3 RS (Rent it)      |
 | Game Type           | Circuit Race                        |
 | Race Length         | Short                               |
 | Track               | Silverstone Racing Circuit          |
