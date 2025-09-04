@@ -1,14 +1,10 @@
-table Session
-	lineageTag: 6983c623-63d1-4389-8b83-4ebb1c0d966e
-
-	measure Yesterday = SELECTEDVALUE('Calendar'[Date])
-		formatString: General Date
-		lineageTag: 802e2106-dbea-452f-8967-dff277560844
+table 'Session Previous Day'
+	lineageTag: fc864e18-27ec-40ab-937c-105829d9ae43
 
 	column SessionId
 		dataType: string
 		sourceProviderType: nvarchar(max)
-		lineageTag: 36a95136-c6c9-472e-890d-9ffed05b8f82
+		lineageTag: 79f36cd0-ee97-42e0-9b1a-5e519e94ceb6
 		summarizeBy: none
 		sourceColumn: SessionId
 
@@ -17,7 +13,7 @@ table Session
 	column SessionName
 		dataType: string
 		sourceProviderType: nvarchar(max)
-		lineageTag: 4aa60bcb-26f1-41d5-9606-c1969ec9ec5c
+		lineageTag: 8100224a-e7e7-4d35-8e99-46a3533de41e
 		summarizeBy: none
 		sourceColumn: SessionName
 
@@ -26,7 +22,7 @@ table Session
 	column CarId
 		dataType: string
 		sourceProviderType: nvarchar(max)
-		lineageTag: 4cbb2855-ca4b-4659-b91c-201b89a6be73
+		lineageTag: 2a6e6ce3-faf9-4939-a4a0-4e3e52895166
 		summarizeBy: none
 		sourceColumn: CarId
 
@@ -35,7 +31,7 @@ table Session
 	column Email
 		dataType: string
 		sourceProviderType: nvarchar(max)
-		lineageTag: 7cf416f3-44ae-4c93-908e-bbb022553766
+		lineageTag: 47d2f76a-428a-4be5-80c9-c8b8e3ff4c0a
 		summarizeBy: none
 		sourceColumn: Email
 
@@ -44,7 +40,7 @@ table Session
 	column Telephone
 		dataType: string
 		sourceProviderType: nvarchar(max)
-		lineageTag: 48c78348-f153-4b75-a575-6b4f0b701a12
+		lineageTag: 4c7e8eff-d5b8-4755-ac16-3f9a0d3c504d
 		summarizeBy: none
 		sourceColumn: Telephone
 
@@ -52,19 +48,17 @@ table Session
 
 	column Date
 		dataType: string
-		sourceProviderType: datetimeoffset
-		lineageTag: a9f45dd3-fd7c-44a8-beb8-9c5c7a72c284
+		sourceProviderType: nvarchar(max)
+		lineageTag: b15e3456-56bd-4280-a96a-1b07d50c5b4b
 		summarizeBy: none
 		sourceColumn: Date
-
-		changedProperty = DataType
 
 		annotation SummarizationSetBy = Automatic
 
 	column StartTime
 		dataType: string
 		sourceProviderType: nvarchar(max)
-		lineageTag: 1338a83a-e256-4486-8de7-714e879c8bd3
+		lineageTag: c8914b5c-7848-4408-954d-e756b7d8628d
 		summarizeBy: none
 		sourceColumn: StartTime
 
@@ -73,23 +67,23 @@ table Session
 	column EndTime
 		dataType: string
 		sourceProviderType: nvarchar(max)
-		lineageTag: e4b1a48e-8164-4c0c-8e1c-62648df9923d
+		lineageTag: 7eb01c47-2f89-4e8d-8c03-952c5c247f4f
 		summarizeBy: none
 		sourceColumn: EndTime
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Session = m
+	partition 'Session Previous Day' = m
 		mode: directQuery
 		source =
 				let
 				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
 				    fGetSessions = Source{[Name="GetSessions"]}[Data],
-				    GetSessions = fGetSessions(Date.StartOfDay(SelectedDate), Date.EndOfDay(SelectedDate))
+				    GetSessions = fGetSessions(Date.StartOfDay(Date.AddDays(SelectedDate,-1)), Date.EndOfDay(Date.AddDays(SelectedDate,-1)))
 				in
 				    GetSessions
 
-	annotation PBI_ResultType = Table
-
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

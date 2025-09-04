@@ -1,0 +1,95 @@
+table Calendar
+	lineageTag: dbddbf06-26fc-433e-851d-cbaab2381a60
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		sourceProviderType: datetimeoffset
+		lineageTag: 121a11a0-7e02-463c-a573-08c4c5f6c1e8
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 1cad48d3-6d7c-4caf-9688-d6de5052c695
+			defaultHierarchy: LocalDateTable_61d236d6-7fa1-4d21-b973-02b5b91b45fe.'Date Hierarchy'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 2,
+				  "kind": 1,
+				  "selectAllValue": "__SelectAll__"
+				}
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 05d71941-cabb-4b02-91cb-0fdb4ba6aeb5
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 39f4631e-1103-40d3-8b8c-42e2ac2e66f6
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Year'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 6da12230-ecfa-4560-afd2-304e861abc32
+		summarizeBy: sum
+		sourceColumn: Week of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Month'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: ac26c3c5-488c-4875-ab40-a3c00907a912
+		summarizeBy: sum
+		sourceColumn: Week of Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 53b97a3c-b674-4723-857a-ca03913774ac
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = m
+		mode: import
+		source =
+				let
+				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    Calendar = Source{[Name="Calendar"]}[Data],
+				    #"Invoked FunctionCalendar" = Calendar("90","1d")
+				in
+				    #"Invoked FunctionCalendar"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

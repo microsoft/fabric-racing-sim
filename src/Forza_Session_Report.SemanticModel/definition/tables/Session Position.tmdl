@@ -1,0 +1,77 @@
+table 'Session Position'
+	lineageTag: 53932491-7aaf-445b-8c37-9a7c530f8fed
+
+	column sessionLapKey
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 82e0f1b9-e1a2-4616-a482-ed44993087ef
+		summarizeBy: none
+		sourceColumn: sessionLapKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 35273865-0bb1-4258-895c-31443d1b7651
+		summarizeBy: none
+		sourceColumn: LapId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: bd7f2d85-217d-4ca3-9000-c7fb1166e55b
+		summarizeBy: none
+		sourceColumn: CarId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: 0b725312-ec44-4bfe-b071-4c3758dc4312
+		summarizeBy: none
+		sourceColumn: Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column PositionX
+		dataType: double
+		sourceProviderType: double
+		lineageTag: bdaeed2b-b84a-49a7-a7a3-fa41f536939f
+		summarizeBy: sum
+		sourceColumn: PositionX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PositionZ
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 8cc9d5da-07a1-48ac-8ee6-34a5a7d5880c
+		summarizeBy: sum
+		sourceColumn: PositionZ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Session Position' = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, null, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    KQLDB = Source{[Name=KQLDB]}[Data],
+				    fGetPivotedPositionData = KQLDB{[Name="GetPivotedPositionData"]}[Data],
+				    GetPivotedPositionData = fGetPivotedPositionData(null,SelectedDate)
+				in
+				    GetPivotedPositionData
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -6,18 +6,23 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["Session Lap","Session","Session Lap Telemetry","EventhouseQueryUri","KQLDB","GetSessionLapData_AllDays"]
+annotation PBI_QueryOrder = ["Session Lap","Session","Session Lap Telemetry","EventhouseQueryUri","KQLDB","GetSessionLapData_AllDays","Session Position","Calendar","SelectedDate","Session Previous Day"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.145.1602.0 (25.07)+10647c9fa319b5e39936cdb21328038c371d1fe4
+annotation PBIDesktopVersion = 2.146.1254.0 (25.08)+791a7518fadc83da883d79322a2658aff57c8db3
 
-annotation PBI_ProTooling = ["DevMode","TMDL-Extension"]
+annotation PBI_ProTooling = ["DevMode"]
 
 ref table 'Session Lap'
 ref table Session
 ref table 'Session Lap Telemetry'
 ref table GetSessionLapData_AllDays
+ref table 'Session Position'
+ref table Calendar
+ref table DateTableTemplate_51087b1b-ae0c-4d69-8bfe-162b616072dd
+ref table LocalDateTable_61d236d6-7fa1-4d21-b973-02b5b91b45fe
+ref table 'Session Previous Day'
 
 ref cultureInfo en-GB
 

@@ -7,3 +7,8 @@ relationship da6b5f61-74e0-ecf9-ad16-b8a3ed58a017
 	fromColumn: 'Session Lap Telemetry'.sessionLapKey
 	toColumn: 'Session Lap'.sessionLapKey
 
+relationship 1cad48d3-6d7c-4caf-9688-d6de5052c695
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_61d236d6-7fa1-4d21-b973-02b5b91b45fe.Date
+

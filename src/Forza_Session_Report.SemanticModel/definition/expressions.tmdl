@@ -1,4 +1,4 @@
-expression EventhouseQueryUri = "kusto_query_uri" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+expression EventhouseQueryUri = "https://trd-ra9k09pbbjh44s9hq7.z9.kusto.fabric.microsoft.com" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 	lineageTag: dbd4f312-79ae-4b91-9b39-429af5b3c265
 
 	annotation PBI_NavigationStepName = Navigation
@@ -11,4 +11,12 @@ expression KQLDB = "RacingSim" meta [IsParameterQuery=true, Type="Text", IsParam
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Text
+
+expression SelectedDate = #date(2025, 8, 28) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: 943fbf0e-2f69-4569-962b-01f201b288a0
+	parameterValuesColumn: Calendar.Date
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Date
 

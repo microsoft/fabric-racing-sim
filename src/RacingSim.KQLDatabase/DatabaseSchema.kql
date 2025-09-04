@@ -2,8 +2,12 @@
 // Use management commands in this script to configure your database items, such as tables, functions, materialized views, and more.
 
 
-.create-merge table RawTelemetry (ChannelId:string, CarId:string, SessionId:string, SessionName:string, Email:string, Telephone:long, LapId:string, SampleCount:int, Frequency:int, Timespan:dynamic, Data:dynamic, EventProcessedUtcTime:datetime, EventEnqueuedUtcTime:datetime) with (folder = "Bronze Layer") 
-.create-merge table CarTelemetry (TelemetryPoint:string, CarId:string, SessionId:guid, LapId:string, StartTime:datetime, EndTime:datetime, Data:real, SessionName:string, Email:string, Telephone:long, IngestionTime:datetime, EventProcessedUtcTime:datetime, EventEnqueuedUtcTime:datetime) with (folder = "Silver Layer") 
+.create-merge table RawTelemetry (ChannelId:string, CarId:string, SessionId:string, SessionName:string, Email:string, Telephone:string, LapId:string, SampleCount:int, Frequency:int, Timespan:dynamic, Data:dynamic, EventProcessedUtcTime:datetime, EventEnqueuedUtcTime:datetime) with (folder = "Bronze Layer") 
+.create-or-alter table RawTelemetry ingestion json mapping 'RawTelemetry_mapping'
+```
+[{"Properties":{"Path":"$['ChannelId']"},"column":"ChannelId","datatype":""},{"Properties":{"Path":"$['CarId']"},"column":"CarId","datatype":""},{"Properties":{"Path":"$['SessionId']"},"column":"SessionId","datatype":""},{"Properties":{"Path":"$['SessionName']"},"column":"SessionName","datatype":""},{"Properties":{"Path":"$['Email']"},"column":"Email","datatype":""},{"Properties":{"Path":"$['Telephone']"},"column":"Telephone","datatype":""},{"Properties":{"Path":"$['LapId']"},"column":"LapId","datatype":""},{"Properties":{"Path":"$['SampleCount']"},"column":"SampleCount","datatype":""},{"Properties":{"Path":"$['Frequency']"},"column":"Frequency","datatype":""},{"Properties":{"Path":"$['Timespan']"},"column":"Timespan","datatype":""},{"Properties":{"Path":"$['Data']"},"column":"Data","datatype":""}]
+```
+.create-merge table CarTelemetry (TelemetryPoint:string, CarId:string, SessionId:guid, LapId:string, StartTime:datetime, EndTime:datetime, Data:real, SessionName:string, Email:string, Telephone:string, IngestionTime:datetime, EventProcessedUtcTime:datetime, EventEnqueuedUtcTime:datetime) with (folder = "Silver Layer") 
 .create-or-alter function with (folder = "Bronze to Silver Function", skipvalidation = "true") GetCarTelemetry() {
     RawTelemetry
     | extend
@@ -21,7 +25,7 @@
         Data=toreal(Data),
         SessionName,
         Email,
-        Telephone,
+        Telephone=tostring(Telephone),
         IngestionTime,
         EventProcessedUtcTime,
         EventEnqueuedUtcTime
@@ -215,10 +219,11 @@
         ["Week of Month"]=(dayofmonth(["Date"]) / 7) + 1,
         ["Day"]=datepart('day', ["Date"])
  }
-.create-or-alter function with (skipvalidation = "true") GetPivotedPositionData(SelectedCarId:string="") {
+.create-or-alter function with (skipvalidation = "true") GetPivotedPositionData(SelectedCarId:string="", SelectedDate:datetime=datetime(null)) {
     CarTelemetry
     | where TelemetryPoint in ("PositionX", "PositionZ")
     | where isempty(SelectedCarId) or CarId == SelectedCarId
+    | where isempty(SelectedDate) or EndTime between (startofday(SelectedDate) .. endofday(SelectedDate))
     | summarize arg_max(EndTime,*) by CarId, TelemetryPoint
     | project sessionLapKey = strcat(SessionId, "-", LapId), Timestamp=EndTime, TelemetryPoint, point=Data, LapId, CarId
     | summarize point=max(point) by sessionLapKey, TelemetryPoint, LapId, CarId, bin(Timestamp,1s)

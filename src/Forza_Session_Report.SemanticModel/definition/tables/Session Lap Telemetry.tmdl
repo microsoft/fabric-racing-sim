@@ -17,16 +17,6 @@ table 'Session Lap Telemetry'
 
 		annotation SummarizationSetBy = Automatic
 
-	column EndTime
-		dataType: dateTime
-		formatString: General Date
-		sourceProviderType: datetimeoffset
-		lineageTag: 0ffd274f-4f62-4daf-a64f-66d29f73b910
-		summarizeBy: none
-		sourceColumn: EndTime
-
-		annotation SummarizationSetBy = Automatic
-
 	column Accel
 		dataType: double
 		sourceProviderType: double
@@ -121,6 +111,34 @@ table 'Session Lap Telemetry'
 
 		annotation SummarizationSetBy = Automatic
 
+	column LapId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 641f110f-2e86-43a4-a2c5-65bcd5402b59
+		summarizeBy: none
+		sourceColumn: LapId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 4ac23132-76dc-4603-a3e0-45be90de3d40
+		summarizeBy: none
+		sourceColumn: CarId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: 574622ec-cd34-4377-b3f9-120d4b761429
+		summarizeBy: none
+		sourceColumn: Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Session Lap Telemetry' = m
 		mode: directQuery
 		source =
@@ -128,7 +146,7 @@ table 'Session Lap Telemetry'
 				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, null, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
 				    KQLDB = Source{[Name=KQLDB]}[Data],
 				    fGetPivotedTelemetryData = KQLDB{[Name="GetPivotedTelemetryData"]}[Data],
-				    GetPivotedTelemetryData = fGetPivotedTelemetryData(null)
+				    GetPivotedTelemetryData = fGetPivotedTelemetryData(SelectedDate)
 				in
 				    GetPivotedTelemetryData
 

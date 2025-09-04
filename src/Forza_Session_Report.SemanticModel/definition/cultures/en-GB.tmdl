@@ -34,6 +34,27 @@ cultureInfo en-GB
 			        }
 			      },
 			      "State": "Generated"
+			    },
+			    "session_lap.best_lap_time": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Session Lap",
+			          "ConceptualProperty": "Best Lap Time"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Lap Time": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  }
 			}
