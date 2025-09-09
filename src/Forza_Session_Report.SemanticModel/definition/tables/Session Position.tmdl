@@ -41,7 +41,7 @@ table 'Session Position'
 	column PositionX
 		dataType: double
 		sourceProviderType: double
-		lineageTag: bdaeed2b-b84a-49a7-a7a3-fa41f536939f
+		lineageTag: 202aded8-e71d-483c-afee-7091b4196ac7
 		summarizeBy: sum
 		sourceColumn: PositionX
 
@@ -52,7 +52,7 @@ table 'Session Position'
 	column PositionZ
 		dataType: double
 		sourceProviderType: double
-		lineageTag: 8cc9d5da-07a1-48ac-8ee6-34a5a7d5880c
+		lineageTag: a7a3bcb1-11ce-47f0-9d74-3c153406e24c
 		summarizeBy: sum
 		sourceColumn: PositionZ
 

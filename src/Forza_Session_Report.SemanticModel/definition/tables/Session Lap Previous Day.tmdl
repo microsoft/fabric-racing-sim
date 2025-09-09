@@ -1,0 +1,112 @@
+table 'Session Lap Previous Day'
+	lineageTag: 64ce7cca-d735-4107-b1df-0bdf4383ba89
+
+	column SessionId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: b4efcd34-bf52-419c-bfb0-e81128cba856
+		summarizeBy: none
+		sourceColumn: SessionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapTime
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 144538cf-25b9-449a-b427-41fbb4a844de
+		summarizeBy: none
+		sourceColumn: LapTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column SessionName
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 15da3ce9-4f0b-4310-9a9e-7023c54d287a
+		summarizeBy: none
+		sourceColumn: SessionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessionLapKey
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 105f8027-9bf0-47ff-8869-59cc8c4c6677
+		summarizeBy: none
+		sourceColumn: sessionLapKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapId
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: b91abb33-5482-4e24-93bb-f07683c9654a
+		summarizeBy: none
+		sourceColumn: LapId
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: 9f50bec4-acdd-4f91-859c-0eafa9d76074
+		summarizeBy: none
+		sourceColumn: StartTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetimeoffset
+		lineageTag: d388db0b-450b-42c7-92e2-5ad24a205372
+		summarizeBy: none
+		sourceColumn: EndTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvalidLap
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 70918b7e-cf52-406c-8f09-c5ebc9e03b4e
+		summarizeBy: none
+		sourceColumn: InvalidLap
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapDistanceTraveled
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 05c88dcc-be63-4470-8f5e-97a080f50c22
+		summarizeBy: sum
+		sourceColumn: LapDistanceTraveled
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rank
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: bdc75f0f-1334-45df-b965-ed55fc57a2c0
+		summarizeBy: sum
+		sourceColumn: Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Session Lap Previous Day' = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    fGetSessions = Source{[Name="GetSessionLapData"]}[Data],
+				    GetSessions = fGetSessions(Date.StartOfDay(Date.AddDays(SelectedDate,-1)),3)
+				in
+				    GetSessions
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

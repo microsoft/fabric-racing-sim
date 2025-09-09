@@ -25,8 +25,6 @@ table Calendar
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation UnderlyingDateTimeDataType = Date
-
 		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
 	column Year

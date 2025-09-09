@@ -42,12 +42,13 @@
         by SessionId, SessionName, CarId, Email, Telephone
     | filter SessionName != "Anonymous"
  }
-.create-or-alter function with (skipvalidation = "true") GetSessionLapData(SelectedDate:datetime=datetime(null)) {
-     let session_lap_summary =
+.create-or-alter function with (skipvalidation = "true") GetSessionLapData(SelectedDate:datetime=datetime(null), SelectTop:int=10) {
+    let session_lap_summary =
         CarTelemetry
         | where TelemetryPoint == "DistanceTraveled"
         | where (todouble(Data)) > 0
         | where isempty(SelectedDate) or StartTime between (startofday(SelectedDate) .. endofday(SelectedDate))
+        | filter SessionName != "Anonymous"
         | project
             sessionLapKey = strcat(SessionId, "-", LapId),
             SessionId,
@@ -63,6 +64,7 @@
         | where TelemetryPoint == "CurrentLapTimer"
         | where todouble(Data) > 0
         | where isempty(SelectedDate) or StartTime between (startofday(SelectedDate) .. endofday(SelectedDate))
+        | filter SessionName != "Anonymous"
         | project
             sessionLapKey = strcat(SessionId, "-", LapId),
             LapTime = todouble(Data) * 1s,
@@ -71,6 +73,7 @@
         | summarize arg_max(StartTime, *) by sessionLapKey;
      session_lap_summary
     | join kind=inner session_laptime on sessionLapKey
+    | where LapTime > 2m
     | project
         SessionId,
         SessionName,
@@ -81,10 +84,12 @@
         tostring(LapTime),
         InvalidLap,
         LapDistanceTraveled
+    | summarize arg_max(LapTime,*) by SessionId
     | sort by LapTime asc
-    | filter InvalidLap == false
+    | filter InvalidLap == false    
     | extend Rank=row_rank_min(LapTime)
- }
+    | where Rank <= SelectTop
+}
 .create-or-alter function with (skipvalidation = "true") GetPivotedTelemetryData(SelectedDate:datetime=datetime(null)) {
     CarTelemetry
     | where (TelemetryPoint == "Gear" and Data <> 11) or TelemetryPoint in ("Steer", "DistanceTraveled", "Brake", "Accel", "Speed", "PositionX", "PositionZ")

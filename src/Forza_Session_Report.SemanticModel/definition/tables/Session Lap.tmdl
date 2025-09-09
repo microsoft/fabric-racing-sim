@@ -124,8 +124,10 @@ table 'Session Lap'
 		mode: directQuery
 		source =
 				let
-				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, "GetSessionLapData", [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
-				    #"Renamed Columns" = Table.RenameColumns(Source,{{"SessionId", "Session Id"}, {"LapId", "Lap Number"}, {"StartTime", "Start Time"}, {"EndTime", "End Time"}, {"LapTime", "Lap Time"}}),
+				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    fGetSessions = Source{[Name="GetSessionLapData"]}[Data],
+				    GetSessions = fGetSessions(Date.StartOfDay(SelectedDate),10000),
+				    #"Renamed Columns" = Table.RenameColumns(GetSessions,{{"SessionId", "Session Id"}, {"LapId", "Lap Number"}, {"StartTime", "Start Time"}, {"EndTime", "End Time"}, {"LapTime", "Lap Time"}}),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Start Time", type datetime}, {"End Time", type datetime}}),
 				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Lap Time", Order.Ascending}})
 				in
@@ -133,5 +135,5 @@ table 'Session Lap'
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 

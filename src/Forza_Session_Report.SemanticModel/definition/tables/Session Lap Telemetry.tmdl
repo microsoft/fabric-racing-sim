@@ -17,94 +17,6 @@ table 'Session Lap Telemetry'
 
 		annotation SummarizationSetBy = Automatic
 
-	column Accel
-		dataType: double
-		sourceProviderType: double
-		lineageTag: 9410d1ac-3cf2-42f6-a9f5-9fc2d0b4a2fb
-		summarizeBy: sum
-		sourceColumn: Accel
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column Brake
-		dataType: double
-		sourceProviderType: double
-		lineageTag: 10a6f4c1-756e-4e5b-a196-8f0a58e45347
-		summarizeBy: sum
-		sourceColumn: Brake
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DistanceTraveled
-		dataType: double
-		sourceProviderType: double
-		lineageTag: a67bee31-c5e0-4e91-8a3e-32b0a53fb82b
-		summarizeBy: sum
-		sourceColumn: DistanceTraveled
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column Gear
-		dataType: double
-		sourceProviderType: double
-		lineageTag: 32239f37-2f5b-4a28-99d4-497707e7fd4b
-		summarizeBy: sum
-		sourceColumn: Gear
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column PositionX
-		dataType: double
-		sourceProviderType: double
-		lineageTag: a24c37ae-ea37-41d6-a1a0-4a599564d0f5
-		summarizeBy: sum
-		sourceColumn: PositionX
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column PositionZ
-		dataType: double
-		sourceProviderType: double
-		lineageTag: f77356cb-5daa-4ae1-8fa7-c96fc7dddea3
-		summarizeBy: sum
-		sourceColumn: PositionZ
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column Speed
-		dataType: double
-		sourceProviderType: double
-		lineageTag: e7cc4856-5414-4b0e-8ec0-fd1d6a127007
-		summarizeBy: sum
-		sourceColumn: Speed
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column Steer
-		dataType: double
-		sourceProviderType: double
-		lineageTag: 42d822fe-3665-456a-91ec-73a4daddcbf7
-		summarizeBy: sum
-		sourceColumn: Steer
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column 'Coordinate Pair' = ROUND('Session Lap Telemetry'[PositionX],2) & " " & ROUND('Session Lap Telemetry'[PositionZ],2)
 		lineageTag: 83cf1dfc-1565-41ca-8301-6362332c3f21
 		summarizeBy: none
@@ -138,6 +50,94 @@ table 'Session Lap Telemetry'
 		sourceColumn: Timestamp
 
 		annotation SummarizationSetBy = Automatic
+
+	column Accel
+		dataType: double
+		sourceProviderType: double
+		lineageTag: b1dc6759-e40b-4123-bd3a-7b2f14285a9b
+		summarizeBy: sum
+		sourceColumn: Accel
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Brake
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 9992f0a8-964c-4185-a327-c00b64ab25eb
+		summarizeBy: sum
+		sourceColumn: Brake
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DistanceTraveled
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 08d074a3-d6ce-4b20-bf27-0d40bb5a9ee2
+		summarizeBy: sum
+		sourceColumn: DistanceTraveled
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Gear
+		dataType: double
+		sourceProviderType: double
+		lineageTag: b7145aeb-c507-4b37-b94d-b5e9c266605a
+		summarizeBy: sum
+		sourceColumn: Gear
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PositionX
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 6d9b607b-2843-4d78-aa26-4232ff910347
+		summarizeBy: sum
+		sourceColumn: PositionX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PositionZ
+		dataType: double
+		sourceProviderType: double
+		lineageTag: dad29d74-f9d9-4c34-99f6-ea0b02c4097a
+		summarizeBy: sum
+		sourceColumn: PositionZ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Speed
+		dataType: double
+		sourceProviderType: double
+		lineageTag: b081554c-74a3-4ad9-a61a-a0e6ec1d2087
+		summarizeBy: sum
+		sourceColumn: Speed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Steer
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 953294a8-cf75-4b66-bfe2-83fec08f98e5
+		summarizeBy: sum
+		sourceColumn: Steer
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition 'Session Lap Telemetry' = m
 		mode: directQuery
