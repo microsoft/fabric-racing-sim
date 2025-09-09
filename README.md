@@ -6,9 +6,12 @@
 
 🔄 Share it with fellow racers and data enthusiasts!
 
+![A screenshot of the main realtime dashboard showing various telemetry metrics](./docs/assets/dashboard.png)
+
 <p align="center">
   <b>Table of Contents</b><br>
   <a href="#-overview">Overview</a> •
+  <a href="#-architecture">Architecture</a> •
   <a href="#-why-this-project-matters">Why This Project Matters</a> •
   <a href="#-key-features">Key Features</a> •
   <a href="#-technology-stack">Technology Stack</a> •
@@ -25,12 +28,29 @@
 
 Imagine playing your favorite racing game while simultaneously capturing, processing, and visualizing every aspect of your performance in real-time. From telemetry data to lap times, from tire wear to Handbrakes – everything is streamed, stored, and displayed on stunning real-time dashboards.
 
-### 🎯 Why This Project Matters
+## 🎯 Why This Project Matters
 
 - **Real-world Data Engineering**: Learn how to build production-grade real-time data pipelines
 - **Gaming Meets Analytics**: Bridge the gap between entertainment and professional data analytics
 - **Microsoft Fabric Showcase**: Explore the full potential of Microsoft's unified analytics platform
 - **Instant Insights**: Make data-driven decisions to improve your racing performance in real-time
+
+## 🏗️ Architecture
+
+![System architecture diagram](./docs/assets/architecture.png)
+
+At a high level, the platform streams raw racing telemetry from Forza Motorsport to Microsoft Fabric in near real-time, where it is processed, persisted, queried, and visualized. The flow is optimized for low latency (live dashboard updates) while also supporting historical analysis.
+
+### Core Data Flow
+1. Forza Motorsport emits UDP telemetry packets (Car Dash format) over the local network.
+2. A .NET Telemetry Client (running on a Windows tablet / Surface on each rig) listens on UDP port 5300, parses the binary payload, enriches it (deriving lap deltas, sector metrics, positional context), and serializes events.
+3. Enriched events are forwarded to Microsoft Fabric Real-Time Intelligence via Eventstream, which routes data to multiple downstream sinks.
+4. Fabric Eventhouse stores the streaming data for low-latency analytical querying and powers Real-Time Dashboards.
+5. A Semantic Model (Power BI dataset / model.tmdl) shapes curated entities (Session, Lap, Telemetry, Position, Calendar) with relationships defined in `Forza_Session_Report.SemanticModel`.
+6. Power BI Real-Time Dashboard & Reports (`Forza_Session_Report.Report`, `Forza_Session_Report_Mobile.Report`) render live visuals (speed traces, position maps, session KPIs) fed directly from Eventhouse / DirectQuery / hybrid queries.
+7. OneLake underpins unified storage, enabling historical retention and future ML/advanced analytics scenarios.
+
+
 
 ## ✨ Key Features
 
