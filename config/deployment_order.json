@@ -57,12 +57,12 @@
     {
         "name": "Forza Session Report_Mobile.Report",
         "id": "b446a65f-b751-b51d-4135-91960f899e26",
-        "datasource": "Forza_Session_Report.SemanticModel"
+        "datasource": "Forza Session Report.SemanticModel"
     },
     {
         "name": "Forza Session Report.Report",
         "id": "65c4c58f-2ca3-9fc6-4e21-2ad942f4aa45",
-        "datasource": "Forza_Session_Report.SemanticModel"
+        "datasource": "Forza Session Report.SemanticModel"
     },
     {
         "name": "RacingSim Generate Config.Notebook",
