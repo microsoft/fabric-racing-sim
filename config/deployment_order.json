@@ -55,7 +55,7 @@
         ]
     },
     {
-        "name": "Forza Session Report_Mobile.Report",
+        "name": "Forza Session Report Mobile.Report",
         "id": "b446a65f-b751-b51d-4135-91960f899e26",
         "datasource": "Forza Session Report.SemanticModel"
     },
