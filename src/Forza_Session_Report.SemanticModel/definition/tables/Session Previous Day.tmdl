@@ -77,7 +77,7 @@ table 'Session Previous Day'
 		mode: directQuery
 		source =
 				let
-				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    Source = KustoConnection,
 				    fGetSessions = Source{[Name="GetSessions"]}[Data],
 				    GetSessions = fGetSessions(Date.StartOfDay(Date.AddDays(SelectedDate,-1)), Date.EndOfDay(Date.AddDays(SelectedDate,-1)))
 				in

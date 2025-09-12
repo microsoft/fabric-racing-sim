@@ -84,7 +84,7 @@
         tostring(LapTime),
         InvalidLap,
         LapDistanceTraveled
-    | summarize arg_max(LapTime,*) by SessionId
+    | summarize arg_max(LapTime,*) by SessionName
     | sort by LapTime asc
     | filter InvalidLap == false    
     | extend Rank=row_rank_min(LapTime)

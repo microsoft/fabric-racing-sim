@@ -64,9 +64,8 @@ table 'Session Position'
 		mode: directQuery
 		source =
 				let
-				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, null, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
-				    KQLDB = Source{[Name=KQLDB]}[Data],
-				    fGetPivotedPositionData = KQLDB{[Name="GetPivotedPositionData"]}[Data],
+				    Source = KustoConnection,
+				    fGetPivotedPositionData = Source{[Name="GetPivotedPositionData"]}[Data],
 				    GetPivotedPositionData = fGetPivotedPositionData(null,SelectedDate)
 				in
 				    GetPivotedPositionData

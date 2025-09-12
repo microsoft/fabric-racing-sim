@@ -4,7 +4,7 @@ table 'Session Lap Telemetry'
 	measure Line =
 			"LINESTRING ("
 			    & CALCULATE(
-			        CONCATENATEX('Session Lap Telemetry', 'Session Lap Telemetry'[Coordinate Pair], ",", 'Session Lap Telemetry'[EndTime], ASC )
+			        CONCATENATEX('Session Lap Telemetry', 'Session Lap Telemetry'[Coordinate Pair], ",", 'Session Lap Telemetry'[Timestamp], ASC )
 			    ) & ")"
 		lineageTag: f8b43922-587d-436d-875e-da13f234ad12
 
@@ -62,12 +62,12 @@ table 'Session Lap Telemetry'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column Brake
+	column Break
 		dataType: double
 		sourceProviderType: double
 		lineageTag: 9992f0a8-964c-4185-a327-c00b64ab25eb
 		summarizeBy: sum
-		sourceColumn: Brake
+		sourceColumn: Break
 
 		annotation SummarizationSetBy = Automatic
 
@@ -143,12 +143,12 @@ table 'Session Lap Telemetry'
 		mode: directQuery
 		source =
 				let
-				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, null, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
-				    KQLDB = Source{[Name=KQLDB]}[Data],
-				    fGetPivotedTelemetryData = KQLDB{[Name="GetPivotedTelemetryData"]}[Data],
-				    GetPivotedTelemetryData = fGetPivotedTelemetryData(SelectedDate)
+				    Source = KustoConnection,
+				    fGetPivotedTelemetryData = Source{[Name="GetPivotedTelemetryData"]}[Data],
+				    GetPivotedTelemetryData = fGetPivotedTelemetryData(SelectedDate),
+				    #"Renamed Columns" = Table.RenameColumns(GetPivotedTelemetryData,{{"Accel", "Accel"}, {"Brake", "Break"}})
 				in
-				    GetPivotedTelemetryData
+				    #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

@@ -100,7 +100,7 @@ table 'Session Lap Previous Day'
 		mode: directQuery
 		source =
 				let
-				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    Source = KustoConnection,
 				    fGetSessions = Source{[Name="GetSessionLapData"]}[Data],
 				    GetSessions = fGetSessions(Date.StartOfDay(Date.AddDays(SelectedDate,-1)),3)
 				in

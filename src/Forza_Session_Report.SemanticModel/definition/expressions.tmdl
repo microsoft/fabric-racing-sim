@@ -20,3 +20,27 @@ expression SelectedDate = #datetime(2025, 9, 5, 13, 0, 0) meta [IsParameterQuery
 
 	annotation PBI_ResultType = DateTime
 
+expression KustoConnection =
+		let
+		    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null, CaseInsensitive=true,ForceUseContains=true])
+		in
+		    Source
+	lineageTag: 7ba0dc86-6acb-449e-b376-226c0039c639
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression GetSessionLapData_AllDays =
+		let
+		    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+		    fGetSessionLapDataAllDays = Source{[Name="GetSessionLapDataAllDays"]}[Data],
+		    GetSessionLapData_AllDays = fGetSessionLapDataAllDays(null, null)
+		in
+		    GetSessionLapData_AllDays
+	lineageTag: d9ea50bf-8790-4718-b650-900cf9c9b7fa
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

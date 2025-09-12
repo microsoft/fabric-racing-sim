@@ -83,7 +83,7 @@ table Session
 		mode: directQuery
 		source =
 				let
-				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    Source = KustoConnection,
 				    fGetSessions = Source{[Name="GetSessions"]}[Data],
 				    GetSessions = fGetSessions(Date.StartOfDay(SelectedDate), Date.EndOfDay(SelectedDate))
 				in

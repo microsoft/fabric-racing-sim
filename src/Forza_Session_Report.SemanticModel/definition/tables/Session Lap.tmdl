@@ -124,7 +124,7 @@ table 'Session Lap'
 		mode: directQuery
 		source =
 				let
-				    Source = AzureDataExplorer.Contents(EventhouseQueryUri, KQLDB, null, [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    Source = KustoConnection,
 				    fGetSessions = Source{[Name="GetSessionLapData"]}[Data],
 				    GetSessions = fGetSessions(Date.StartOfDay(SelectedDate),10000),
 				    #"Renamed Columns" = Table.RenameColumns(GetSessions,{{"SessionId", "Session Id"}, {"LapId", "Lap Number"}, {"StartTime", "Start Time"}, {"EndTime", "End Time"}, {"LapTime", "Lap Time"}}),
