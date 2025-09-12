@@ -46,7 +46,7 @@
         ]
     },
     {
-        "name": "Forza_Session_Report.SemanticModel",
+        "name": "Forza Session Report.SemanticModel",
         "id": "e20d5dc6-ad6c-ab7c-4d8d-720a26f28ace",
         "datasources": [
             {
@@ -55,12 +55,12 @@
         ]
     },
     {
-        "name": "Forza_Session_Report_Mobile.Report",
+        "name": "Forza Session Report_Mobile.Report",
         "id": "b446a65f-b751-b51d-4135-91960f899e26",
         "datasource": "Forza_Session_Report.SemanticModel"
     },
     {
-        "name": "Forza_Session_Report.Report",
+        "name": "Forza Session Report.Report",
         "id": "65c4c58f-2ca3-9fc6-4e21-2ad942f4aa45",
         "datasource": "Forza_Session_Report.SemanticModel"
     },
