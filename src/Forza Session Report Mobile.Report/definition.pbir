@@ -3,7 +3,7 @@
   "version": "4.0",
   "datasetReference": {
     "byPath": {
-      "path": "../Forza Session Report Mobile.SemanticModel"
+      "path": "../Forza_Session_Report.SemanticModel"
     }
   }
 }
