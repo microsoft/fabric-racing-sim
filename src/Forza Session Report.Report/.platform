@@ -2,11 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Report",
-    "displayName": "Forza Session Report",
-    "description": "Imported from fab"
+    "displayName": "Forza Session Report"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "c0af017e-7b2c-be9f-43f8-0fd9debd8600"
+    "logicalId": "c31dbd86-b6fd-a8e0-457d-46ae197661ff"
   }
 }

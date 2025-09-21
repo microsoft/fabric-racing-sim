@@ -58,7 +58,7 @@
             data = toint(Data)
         | summarize MinDistance = min(data), MaxDistance = max(data) by sessionLapKey, SessionId, SessionName, LapId
         | extend LapDistanceTraveled = MaxDistance - MinDistance
-        | extend InvalidLap = iif((LapDistanceTraveled < 5000) or (LapDistanceTraveled >= 17670), true, false);
+        | extend InvalidLap = iif((LapDistanceTraveled < 5000) or (LapDistanceTraveled >= 6670), true, false);
      let session_laptime =
         CarTelemetry
         | where TelemetryPoint == "CurrentLapTimer"
@@ -74,6 +74,7 @@
      session_lap_summary
     | join kind=inner session_laptime on sessionLapKey
     | where LapTime > 2m
+     | filter InvalidLap == false    
     | project
         SessionId,
         SessionName,
@@ -84,9 +85,8 @@
         tostring(LapTime),
         InvalidLap,
         LapDistanceTraveled
-    | summarize arg_max(LapTime,*) by SessionName
+    | summarize arg_min(LapTime,*) by SessionName
     | sort by LapTime asc
-    | filter InvalidLap == false    
     | extend Rank=row_rank_min(LapTime)
     | where Rank <= SelectTop
 }

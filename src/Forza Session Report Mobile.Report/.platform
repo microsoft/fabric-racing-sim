@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Report",
-    "displayName": "Forza Session Report (Mobile)"
+    "displayName": "Forza Session Report Mobile"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "f7acd7ee-d276-8126-4d88-30a4643ea786"
+    "logicalId": "36e4c571-84ec-8120-4251-c077d9f8ec5b"
   }
 }
