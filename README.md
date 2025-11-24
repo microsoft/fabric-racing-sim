@@ -143,7 +143,7 @@ At a high level, the platform streams raw racing telemetry from Forza Motorsport
 
 6. Set up the game in [**advanced event setup**](https://youtu.be/ooOQhfepL0c) using the following settings:
 
-> **Note**: As long as UDP telemetry is correctly setup, you could _technically_ choose any setting you want. However, some features - like the racers map on the Power BI report - requires this settings. 
+> **Note**: As long as UDP telemetry is correctly setup, you could _technically_ choose any setting you want. However, some features - like the racers map on the Power BI report - requires these settings. 
 
 | Name                | Setting                             |
 |---------------------|-------------------------------------|
